@@ -20,59 +20,61 @@ class _SignUpPageState extends State<SignUpPage> {
         title: const Text("SignUp"),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(25.0),
-        child: Column(children: [
-          const TextField(
-            decoration: InputDecoration(
-                labelText: "First Name", border: OutlineInputBorder()),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          const TextField(
-            decoration: InputDecoration(
-                labelText: "Last Name", border: OutlineInputBorder()),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          const TextField(
-            decoration:
-                InputDecoration(labelText: "Email", border: OutlineInputBorder()),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          const TextField(
-            decoration: InputDecoration(
-                labelText: "Phone Number", border: OutlineInputBorder()),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          const TextField(
-            decoration: InputDecoration(
-                labelText: "Password", border: OutlineInputBorder()),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          const TextField(
-            decoration: InputDecoration(
-                labelText: "Retype Password", border: OutlineInputBorder()),
-          ),
-          const SizedBox(
-            height: 40,
-          ),
-          ElevatedButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const LoginPage()));
-              },
-              style: buttonStyle,
-              child: const Text("SignUp"))
-        ]),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(25.0),
+          child: Column(children: [
+            const TextField(
+              decoration: InputDecoration(
+                  labelText: "First Name", border: OutlineInputBorder()),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const TextField(
+              decoration: InputDecoration(
+                  labelText: "Last Name", border: OutlineInputBorder()),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const TextField(
+              decoration:
+                  InputDecoration(labelText: "Email", border: OutlineInputBorder()),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const TextField(
+              decoration: InputDecoration(
+                  labelText: "Phone Number", border: OutlineInputBorder()),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const TextField(
+              decoration: InputDecoration(
+                  labelText: "Password", border: OutlineInputBorder()),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const TextField(
+              decoration: InputDecoration(
+                  labelText: "Retype Password", border: OutlineInputBorder()),
+            ),
+            const SizedBox(
+              height: 40,
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const LoginPage()));
+                },
+                style: buttonStyle,
+                child: const Text("SignUp"))
+          ]),
+        ),
       ),
     );
   }

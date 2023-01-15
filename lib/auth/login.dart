@@ -19,57 +19,59 @@ class _LoginPageState extends State<LoginPage> {
         title: const Text("Login"),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(25.0),
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-          const TextField(
-            decoration: InputDecoration(
-                labelText: "Email/Phone number", border: OutlineInputBorder()),
-          ),
-          const SizedBox(
-            height: 30,
-          ),
-          const TextField(
-            decoration: InputDecoration(
-                labelText: "Password", border: OutlineInputBorder()),
-          ),
-          const SizedBox(
-            height: 5,
-          ),
-          const Text("Forget Password?"),
-          const SizedBox(
-            height: 35,
-          ),
-          ElevatedButton(
-            onPressed: () {},
-            style: buttonStyle,
-            child: const Text("Login"),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text("Don't have any account? "),
-              InkWell(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const SignUpPage()));
-                },
-                child: const Text(
-                  "Signup",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.blue),
-                ),
-              )
-            ],
-          )
-        ]),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(25.0),
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+            const TextField(
+              decoration: InputDecoration(
+                  labelText: "Email/Phone number", border: OutlineInputBorder()),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            const TextField(
+              decoration: InputDecoration(
+                  labelText: "Password", border: OutlineInputBorder()),
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            const Text("Forget Password?"),
+            const SizedBox(
+              height: 35,
+            ),
+            ElevatedButton(
+              onPressed: () {},
+              style: buttonStyle,
+              child: const Text("Login"),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text("Don't have any account? "),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SignUpPage()));
+                  },
+                  child: const Text(
+                    "Signup",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.blue),
+                  ),
+                )
+              ],
+            )
+          ]),
+        ),
       ),
     );
   }
