@@ -21,7 +21,9 @@ class _LoginPageState extends State<LoginPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(25.0),
-        child: Column(children: [
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
           const TextField(
             decoration: InputDecoration(
                 labelText: "Email/Phone number", border: OutlineInputBorder()),
@@ -34,7 +36,11 @@ class _LoginPageState extends State<LoginPage> {
                 labelText: "Password", border: OutlineInputBorder()),
           ),
           const SizedBox(
-            height: 50,
+            height: 5,
+          ),
+          const Text("Forget Password?"),
+          const SizedBox(
+            height: 35,
           ),
           ElevatedButton(
             onPressed: () {},
