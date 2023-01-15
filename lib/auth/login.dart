@@ -12,6 +12,13 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController pwdController = TextEditingController();
+
+  final _formKey = GlobalKey<FormState>();
+  String email = "";
+  String password = "";
+  String fullname = "";
+  bool login = false;
+
   @override
   Widget build(BuildContext context) {
     ButtonStyle buttonStyle =
@@ -25,56 +32,59 @@ class _LoginPageState extends State<LoginPage> {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(25.0),
-          child: Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
-            TextField(
-              controller: emailController,
-              decoration: const InputDecoration(
-                  labelText: "Email/Phone number",
-                  border: OutlineInputBorder()),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            TextField(
-              controller: pwdController,
-              decoration: const InputDecoration(
-                  labelText: "Password", border: OutlineInputBorder()),
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            const Text("Forget Password?"),
-            const SizedBox(
-              height: 35,
-            ),
-            ElevatedButton(
-              onPressed: signIn,
-              style: buttonStyle,
-              child: const Text("Login"),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text("Don't have any account? "),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const SignUpPage()));
-                  },
-                  child: const Text(
-                    "Signup",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.blue),
-                  ),
-                )
-              ],
-            )
-          ]),
+          child: Form(
+            key: _formKey,
+            child: Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
+              TextField(
+                controller: emailController,
+                decoration: const InputDecoration(
+                    labelText: "Email/Phone number",
+                    border: OutlineInputBorder()),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              TextField(
+                controller: pwdController,
+                decoration: const InputDecoration(
+                    labelText: "Password", border: OutlineInputBorder()),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              const Text("Forget Password?"),
+              const SizedBox(
+                height: 35,
+              ),
+              ElevatedButton(
+                onPressed: signIn,
+                style: buttonStyle,
+                child: const Text("Login"),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text("Don't have any account? "),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SignUpPage()));
+                    },
+                    child: const Text(
+                      "Signup",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.blue),
+                    ),
+                  )
+                ],
+              )
+            ]),
+          ),
         ),
       ),
     );
