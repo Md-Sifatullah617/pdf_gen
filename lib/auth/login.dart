@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pdf_gen/auth/signup.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -40,13 +41,20 @@ class _LoginPageState extends State<LoginPage> {
             style: buttonStyle,
             child: const Text("Login"),
           ),
-          const SizedBox(height: 10,),
+          const SizedBox(
+            height: 10,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text("Don't have any account? "),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SignUpPage()));
+                },
                 child: const Text(
                   "Signup",
                   style: TextStyle(
