@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pdf_gen/auth/signup.dart';
 
@@ -9,6 +10,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController pwdController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     ButtonStyle buttonStyle =
@@ -22,18 +25,19 @@ class _LoginPageState extends State<LoginPage> {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(25.0),
-          child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-            const TextField(
-              decoration: InputDecoration(
-                  labelText: "Email/Phone number", border: OutlineInputBorder()),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
+            TextField(
+              controller: emailController,
+              decoration: const InputDecoration(
+                  labelText: "Email/Phone number",
+                  border: OutlineInputBorder()),
             ),
             const SizedBox(
               height: 30,
             ),
-            const TextField(
-              decoration: InputDecoration(
+            TextField(
+              controller: pwdController,
+              decoration: const InputDecoration(
                   labelText: "Password", border: OutlineInputBorder()),
             ),
             const SizedBox(
@@ -44,7 +48,7 @@ class _LoginPageState extends State<LoginPage> {
               height: 35,
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: signIn,
               style: buttonStyle,
               child: const Text("Login"),
             ),
@@ -74,5 +78,11 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  Future get signIn async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: pwdController.text.trim());
   }
 }
