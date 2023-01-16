@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pdf_gen/auth/signup.dart';
+import 'package:pdf_gen/homepage.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -57,7 +58,12 @@ class _LoginPageState extends State<LoginPage> {
                 height: 35,
               ),
               ElevatedButton(
-                onPressed: (){},
+                onPressed: (){
+                    Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const MyHomePage()));
+                },
                 style: buttonStyle,
                 child: const Text("Login"),
               ),
