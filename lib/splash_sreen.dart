@@ -35,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        color: Color.fromARGB(255, 255, 255, 255),
+        color: Colors.white70,
       ),
       child: const Image(image: AssetImage("assets/images/logo.gif")),
     );

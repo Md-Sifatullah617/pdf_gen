@@ -13,12 +13,14 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController pwdController = TextEditingController();
+  @override
+  void dispose() {
+    super.dispose();
+    emailController.dispose();
+    pwdController.dispose();
+  }
 
   final _formKey = GlobalKey<FormState>();
-  String email = "";
-  String password = "";
-  String fullname = "";
-  bool login = false;
 
   @override
   Widget build(BuildContext context) {
@@ -35,20 +37,35 @@ class _LoginPageState extends State<LoginPage> {
           padding: const EdgeInsets.all(25.0),
           child: Form(
             key: _formKey,
-            child: Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
-              TextField(
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
+              TextFormField(
+                keyboardType: TextInputType.emailAddress,
                 controller: emailController,
                 decoration: const InputDecoration(
                     labelText: "Email/Phone number",
                     border: OutlineInputBorder()),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Enter your email/phone number";
+                  }
+                  return null;
+                },
               ),
               const SizedBox(
                 height: 30,
               ),
-              TextField(
+              TextFormField(
+                keyboardType: TextInputType.text,
                 controller: pwdController,
                 decoration: const InputDecoration(
                     labelText: "Password", border: OutlineInputBorder()),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Enter your password";
+                  }
+                  return null;
+                },
               ),
               const SizedBox(
                 height: 5,
@@ -58,11 +75,8 @@ class _LoginPageState extends State<LoginPage> {
                 height: 35,
               ),
               ElevatedButton(
-                onPressed: (){
-                    Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const MyHomePage()));
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {}
                 },
                 style: buttonStyle,
                 child: const Text("Login"),
