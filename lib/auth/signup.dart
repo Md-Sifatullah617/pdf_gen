@@ -72,7 +72,29 @@ class _SignUpPageState extends State<SignUpPage> {
                       MaterialPageRoute(builder: (context) => const LoginPage()));
                 },
                 style: buttonStyle,
-                child: const Text("SignUp"))
+                child: const Text("SignUp")),
+                const SizedBox(
+                height: 10,
+              ),
+                Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text("Already have any account? "),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const LoginPage()));
+                    },
+                    child: const Text(
+                      "Signin",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.blue),
+                    ),
+                  )
+                ],
+              )
           ]),
         ),
       ),
