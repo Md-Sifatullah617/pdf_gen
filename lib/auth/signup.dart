@@ -9,7 +9,6 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-    
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -17,7 +16,15 @@ class _SignUpPageState extends State<SignUpPage> {
         ElevatedButton.styleFrom(minimumSize: const Size(double.infinity, 50));
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
+        automaticallyImplyLeading: true,
+        leading: InkWell(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: const Icon(
+              Icons.chevron_left,
+              size: 30,
+            )),
         title: const Text("SignUp"),
         centerTitle: true,
       ),
