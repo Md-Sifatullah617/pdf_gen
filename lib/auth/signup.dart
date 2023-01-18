@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:pdf_gen/auth/login.dart';
 
@@ -15,6 +17,8 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController phnController = TextEditingController();
   final TextEditingController pwdController = TextEditingController();
+
+  FirebaseAuth _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     ButtonStyle buttonStyle =
@@ -127,10 +131,9 @@ class _SignUpPageState extends State<SignUpPage> {
               ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const LoginPage()));
+                      _auth.createUserWithEmailAndPassword(
+                          email: emailController.text.toString(),
+                          password: pwdController.text.toString());
                     }
                   },
                   style: buttonStyle,
