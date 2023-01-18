@@ -9,11 +9,12 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+    
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    ButtonStyle buttonStyle = ElevatedButton.styleFrom(
-        minimumSize: const Size(double.infinity, 50)
-    );
+    ButtonStyle buttonStyle =
+        ElevatedButton.styleFrom(minimumSize: const Size(double.infinity, 50));
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -23,60 +24,102 @@ class _SignUpPageState extends State<SignUpPage> {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(25.0),
-          child: Column(children: [
-            const TextField(
-              decoration: InputDecoration(
-                  labelText: "First Name", border: OutlineInputBorder()),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const TextField(
-              decoration: InputDecoration(
-                  labelText: "Last Name", border: OutlineInputBorder()),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const TextField(
-              decoration:
-                  InputDecoration(labelText: "Email", border: OutlineInputBorder()),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const TextField(
-              decoration: InputDecoration(
-                  labelText: "Phone Number", border: OutlineInputBorder()),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const TextField(
-              decoration: InputDecoration(
-                  labelText: "Password", border: OutlineInputBorder()),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const TextField(
-              decoration: InputDecoration(
-                  labelText: "Retype Password", border: OutlineInputBorder()),
-            ),
-            const SizedBox(
-              height: 40,
-            ),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const LoginPage()));
+          child: Form(
+            key: _formKey,
+            child: Column(children: [
+              TextFormField(
+                decoration: const InputDecoration(
+                    labelText: "First Name", border: OutlineInputBorder()),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "*required";
+                  }
+                  return null;
                 },
-                style: buttonStyle,
-                child: const Text("SignUp")),
-                const SizedBox(
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              TextFormField(
+                decoration: const InputDecoration(
+                    labelText: "Last Name", border: OutlineInputBorder()),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "*required";
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              TextFormField(
+                decoration: const InputDecoration(
+                    labelText: "Email", border: OutlineInputBorder()),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "*required";
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              TextFormField(
+                decoration: const InputDecoration(
+                    labelText: "Phone Number", border: OutlineInputBorder()),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return null;
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              TextFormField(
+                decoration: const InputDecoration(
+                    labelText: "Password", border: OutlineInputBorder()),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "*required";
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              TextFormField(
+                decoration: const InputDecoration(
+                    labelText: "Retype Password", border: OutlineInputBorder()),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "*required";
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(
+                height: 40,
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const LoginPage()));
+                    }
+                  },
+                  style: buttonStyle,
+                  child: const Text("SignUp")),
+              const SizedBox(
                 height: 10,
               ),
-                Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text("Already have any account? "),
@@ -95,7 +138,8 @@ class _SignUpPageState extends State<SignUpPage> {
                   )
                 ],
               )
-          ]),
+            ]),
+          ),
         ),
       ),
     );
