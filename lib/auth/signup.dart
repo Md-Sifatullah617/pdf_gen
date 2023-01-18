@@ -10,6 +10,11 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   final _formKey = GlobalKey<FormState>();
+  final TextEditingController fnameController = TextEditingController();
+  final TextEditingController lnameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController phnController = TextEditingController();
+  final TextEditingController pwdController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     ButtonStyle buttonStyle =
@@ -35,6 +40,7 @@ class _SignUpPageState extends State<SignUpPage> {
             key: _formKey,
             child: Column(children: [
               TextFormField(
+                controller: fnameController,
                 decoration: const InputDecoration(
                     labelText: "First Name", border: OutlineInputBorder()),
                 validator: (value) {
@@ -48,6 +54,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 height: 20,
               ),
               TextFormField(
+                controller: lnameController,
                 decoration: const InputDecoration(
                     labelText: "Last Name", border: OutlineInputBorder()),
                 validator: (value) {
@@ -61,6 +68,8 @@ class _SignUpPageState extends State<SignUpPage> {
                 height: 20,
               ),
               TextFormField(
+                controller: emailController,
+                keyboardType: TextInputType.emailAddress,
                 decoration: const InputDecoration(
                     labelText: "Email", border: OutlineInputBorder()),
                 validator: (value) {
@@ -74,6 +83,8 @@ class _SignUpPageState extends State<SignUpPage> {
                 height: 20,
               ),
               TextFormField(
+                controller: phnController,
+                keyboardType: TextInputType.phone,
                 decoration: const InputDecoration(
                     labelText: "Phone Number", border: OutlineInputBorder()),
                 validator: (value) {
@@ -87,6 +98,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 height: 20,
               ),
               TextFormField(
+                controller: pwdController,
                 decoration: const InputDecoration(
                     labelText: "Password", border: OutlineInputBorder()),
                 validator: (value) {
