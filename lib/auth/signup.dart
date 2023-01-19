@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:pdf_gen/auth/login.dart';
+import 'package:pdf_gen/utilities/utilities.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -131,9 +132,14 @@ class _SignUpPageState extends State<SignUpPage> {
               ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      _auth.createUserWithEmailAndPassword(
-                          email: emailController.text.toString(),
-                          password: pwdController.text.toString());
+                      _auth
+                          .createUserWithEmailAndPassword(
+                              email: emailController.text.toString(),
+                              password: pwdController.text.toString())
+                          .then((value) {})
+                          .onError((error, stackTrace) {
+                        Utilities().toastMessage(error.toString());
+                      });
                     }
                   },
                   style: buttonStyle,
