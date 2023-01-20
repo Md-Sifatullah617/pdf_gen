@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:pdf_gen/auth/login.dart';
 import 'package:pdf_gen/utilities/utilities.dart';
@@ -20,7 +19,7 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController phnController = TextEditingController();
   final TextEditingController pwdController = TextEditingController();
 
-  FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     ButtonStyle buttonStyle =
