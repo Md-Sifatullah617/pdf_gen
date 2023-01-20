@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:pdf_gen/auth/signup.dart';
 import 'package:pdf_gen/homepage.dart';
 
+import '../utilities/utilities.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -20,6 +22,8 @@ class _LoginPageState extends State<LoginPage> {
     pwdController.dispose();
   }
 
+  bool loading = false;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -77,11 +81,27 @@ class _LoginPageState extends State<LoginPage> {
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    
+                    setState(() {
+                      loading = true;
+                    });
+                    _auth
+                        .createUserWithEmailAndPassword(
+                            email: emailController.text.toString(),
+                            password: pwdController.text.toString())
+                        .then((value) {
+                      setState(() {
+                        loading = false;
+                      });
+                    }).onError((error, stackTrace) {
+                      Utilities().toastMessage(error.toString());
+                      setState(() {
+                        loading = false;
+                      });
+                    });
                   }
                 },
                 style: buttonStyle,
-                child: const Text("Login"),
+                child: loading? const CircularProgressIndicator() : const Text("Login"),
               ),
               const SizedBox(
                 height: 10,
