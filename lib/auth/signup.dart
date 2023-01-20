@@ -12,6 +12,7 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  bool loading = false;
   final _formKey = GlobalKey<FormState>();
   final TextEditingController fnameController = TextEditingController();
   final TextEditingController lnameController = TextEditingController();
@@ -132,18 +133,27 @@ class _SignUpPageState extends State<SignUpPage> {
               ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
+                      setState(() {
+                        loading = true;
+                      });
                       _auth
                           .createUserWithEmailAndPassword(
                               email: emailController.text.toString(),
                               password: pwdController.text.toString())
-                          .then((value) {})
-                          .onError((error, stackTrace) {
+                          .then((value) {
+                        setState(() {
+                          loading = false;
+                        });
+                      }).onError((error, stackTrace) {
                         Utilities().toastMessage(error.toString());
+                        setState(() {
+                          loading = false;
+                        });
                       });
                     }
                   },
                   style: buttonStyle,
-                  child: const Text("SignUp")),
+                  child: loading?const CircularProgressIndicator(): const Text("SignUp")),
               const SizedBox(
                 height: 10,
               ),
