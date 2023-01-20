@@ -20,6 +20,25 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController pwdController = TextEditingController();
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  void signUp(){
+    setState(() {
+                        loading = true;
+                      });
+                      _auth
+                          .createUserWithEmailAndPassword(
+                              email: emailController.text.toString(),
+                              password: pwdController.text.toString())
+                          .then((value) {
+                        setState(() {
+                          loading = false;
+                        });
+                      }).onError((error, stackTrace) {
+                        Utilities().toastMessage(error.toString());
+                        setState(() {
+                          loading = false;
+                        });
+                      });
+  }
   @override
   Widget build(BuildContext context) {
     ButtonStyle buttonStyle =
@@ -132,27 +151,15 @@ class _SignUpPageState extends State<SignUpPage> {
               ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      setState(() {
-                        loading = true;
-                      });
-                      _auth
-                          .createUserWithEmailAndPassword(
-                              email: emailController.text.toString(),
-                              password: pwdController.text.toString())
-                          .then((value) {
-                        setState(() {
-                          loading = false;
-                        });
-                      }).onError((error, stackTrace) {
-                        Utilities().toastMessage(error.toString());
-                        setState(() {
-                          loading = false;
-                        });
-                      });
+                      signUp();
                     }
                   },
                   style: buttonStyle,
-                  child: loading?const CircularProgressIndicator(color: Colors.white,): const Text("SignUp")),
+                  child: loading
+                      ? const CircularProgressIndicator(
+                          color: Colors.white,
+                        )
+                      : const Text("SignUp")),
               const SizedBox(
                 height: 10,
               ),

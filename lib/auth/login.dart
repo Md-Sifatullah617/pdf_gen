@@ -25,6 +25,25 @@ class _LoginPageState extends State<LoginPage> {
   bool loading = false;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final _formKey = GlobalKey<FormState>();
+  void logIn(){
+    setState(() {
+                      loading = true;
+                    });
+                    _auth
+                        .createUserWithEmailAndPassword(
+                            email: emailController.text.toString(),
+                            password: pwdController.text.toString())
+                        .then((value) {
+                      setState(() {
+                        loading = false;
+                      });
+                    }).onError((error, stackTrace) {
+                      Utilities().toastMessage(error.toString());
+                      setState(() {
+                        loading = false;
+                      });
+                    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,27 +100,15 @@ class _LoginPageState extends State<LoginPage> {
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    setState(() {
-                      loading = true;
-                    });
-                    _auth
-                        .createUserWithEmailAndPassword(
-                            email: emailController.text.toString(),
-                            password: pwdController.text.toString())
-                        .then((value) {
-                      setState(() {
-                        loading = false;
-                      });
-                    }).onError((error, stackTrace) {
-                      Utilities().toastMessage(error.toString());
-                      setState(() {
-                        loading = false;
-                      });
-                    });
+                    logIn();
                   }
                 },
                 style: buttonStyle,
-                child: loading? const CircularProgressIndicator(color: Colors.white,) : const Text("Login"),
+                child: loading
+                    ? const CircularProgressIndicator(
+                        color: Colors.white,
+                      )
+                    : const Text("Login"),
               ),
               const SizedBox(
                 height: 10,
