@@ -101,7 +101,7 @@ class _LoginPageState extends State<LoginPage> {
                   }
                 },
                 style: buttonStyle,
-                child: loading? const CircularProgressIndicator() : const Text("Login"),
+                child: loading? const CircularProgressIndicator(color: Colors.white,) : const Text("Login"),
               ),
               const SizedBox(
                 height: 10,

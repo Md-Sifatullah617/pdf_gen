@@ -152,7 +152,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     }
                   },
                   style: buttonStyle,
-                  child: loading?const CircularProgressIndicator(): const Text("SignUp")),
+                  child: loading?const CircularProgressIndicator(color: Colors.white,): const Text("SignUp")),
               const SizedBox(
                 height: 10,
               ),
