@@ -26,6 +26,9 @@ class _LoginPageState extends State<LoginPage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final _formKey = GlobalKey<FormState>();
   void logIn() {
+    setState(() {
+      loading = true;
+    });
     _auth
         .signInWithEmailAndPassword(
             email: emailController.text,
@@ -33,8 +36,15 @@ class _LoginPageState extends State<LoginPage> {
         .then((value) {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => const MyHomePage()));
+      Utilities().toastMessage("Login Successfull");
+      setState(() {
+        loading = false;
+      });
     }).onError((error, stackTrace) {
       Utilities().toastMessage(error.toString());
+      setState(() {
+        loading = false;
+      });
     });
   }
 
