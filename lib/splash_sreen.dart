@@ -12,23 +12,22 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  final _auth = FirebaseAuth.instance;
+
   @override
   void initState() {
     super.initState();
-    Timer(
-        const Duration(seconds: 5),
-        () => Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => StreamBuilder(
-                    stream: FirebaseAuth.instance.authStateChanges(),
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        return const MyHomePage();
-                      } else {
-                        return const LoginPage();
-                      }
-                    }))));
+    final user = _auth.currentUser;
+    if (user != null) {
+      Timer(const Duration(seconds: 5), () {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const MyHomePage()));
+      });
+    }else{
+        Timer(const Duration(seconds: 5), () {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const LoginPage()));
+    }
   }
 
   @override
