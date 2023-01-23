@@ -25,24 +25,17 @@ class _LoginPageState extends State<LoginPage> {
   bool loading = false;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final _formKey = GlobalKey<FormState>();
-  void logIn(){
-    setState(() {
-                      loading = true;
-                    });
-                    _auth
-                        .createUserWithEmailAndPassword(
-                            email: emailController.text.toString(),
-                            password: pwdController.text.toString())
-                        .then((value) {
-                      setState(() {
-                        loading = false;
-                      });
-                    }).onError((error, stackTrace) {
-                      Utilities().toastMessage(error.toString());
-                      setState(() {
-                        loading = false;
-                      });
-                    });
+  void logIn() {
+    _auth
+        .signInWithEmailAndPassword(
+            email: emailController.text,
+            password: pwdController.text.toString())
+        .then((value) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const MyHomePage()));
+    }).onError((error, stackTrace) {
+      Utilities().toastMessage(error.toString());
+    });
   }
 
   @override
