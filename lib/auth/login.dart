@@ -36,12 +36,12 @@ class _LoginPageState extends State<LoginPage> {
         .then((value) {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => const MyHomePage()));
-      Utilities().toastMessage("Login Successfull");
+      Utilities().toastMessage("Login Successfull", color: Colors.green,);
       setState(() {
         loading = false;
       });
     }).onError((error, stackTrace) {
-      Utilities().toastMessage(error.toString());
+      Utilities().toastMessage(error.toString(), color: Colors.red);
       setState(() {
         loading = false;
       });

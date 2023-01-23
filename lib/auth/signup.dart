@@ -33,7 +33,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           loading = false;
                         });
                       }).onError((error, stackTrace) {
-                        Utilities().toastMessage(error.toString());
+                        Utilities().toastMessage(error.toString(), color: Colors.red);
                         setState(() {
                           loading = false;
                         });
