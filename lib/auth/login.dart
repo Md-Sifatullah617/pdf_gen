@@ -84,6 +84,7 @@ class _LoginPageState extends State<LoginPage> {
               TextFormField(
                 keyboardType: TextInputType.text,
                 controller: pwdController,
+                obscureText: true,
                 decoration: const InputDecoration(
                     labelText: "Password", border: OutlineInputBorder()),
                 validator: (value) {

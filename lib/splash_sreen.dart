@@ -1,7 +1,9 @@
 import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pdf_gen/auth/login.dart';
+import 'package:pdf_gen/homepage.dart';
 
 class SplashScreenn extends StatefulWidget {
   const SplashScreenn({super.key});
@@ -11,13 +13,23 @@ class SplashScreenn extends StatefulWidget {
 }
 
 class _SplashScreennState extends State<SplashScreenn> {
+  final _auth = FirebaseAuth.instance;
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 5), () {
+    final user = _auth.currentUser;
+    if(user!=null){
+        Timer(const Duration(seconds: 5), () {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const MyHomePage()));
+    });
+    }else{
+        Timer(const Duration(seconds: 5), () {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => const LoginPage()));
     });
+    }
+    
   }
 
   @override
@@ -32,4 +44,3 @@ class _SplashScreennState extends State<SplashScreenn> {
     );
   }
 }
-
