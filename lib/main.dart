@@ -14,13 +14,38 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
+    Future<bool> showExitPopup() async {
+      return await showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                    title: const Text("Exit App"),
+                    content: const Text("Do you really want to exit?"),
+                    actions: [
+                      TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop(false);
+                          },
+                          child: const Text("No")),
+                      TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop(true);
+                          },
+                          child: const Text("Yes"))
+                    ],
+                  )) ??
+          false;
+    }
+
+    return WillPopScope(
+      onWillPop: showExitPopup,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.green,
+        ),
+        home: const SplashScreenn(),
       ),
-      home: const SplashScreenn(),
     );
   }
 }
