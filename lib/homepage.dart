@@ -14,49 +14,74 @@ class _MyHomePageState extends State<MyHomePage> {
   final _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        actions: [
-          IconButton(
-              onPressed: () {
-                _auth
-                    .signOut()
-                    .then((value) => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const LoginPage())))
-                    .onError((error, stackTrace) => Utilities()
-                        .toastMessage(error.toString(), color: Colors.red));
-              },
-              icon: const Icon(Icons.exit_to_app))
-        ],
-        automaticallyImplyLeading: true,
-        title: const Text("PDF_gen2.0"),
-        centerTitle: true,
-      ),
-      drawer: Drawer(
-        child: ListView(
-          children: const [
-            UserAccountsDrawerHeader(
-              accountName: Text("Md. Sifatullah"),
-              accountEmail: Text("sifatullahsanowar1@gmail.com"),
-              currentAccountPicture: CircleAvatar(
-                  backgroundImage: AssetImage("assets/images/dp.jpg")),
-            ),
-            ListTile(
-              leading: Icon(Icons.wallet),
-              title: Text("Donate us"),
-            ),
-            ListTile(
-              leading: Icon(Icons.info),
-              title: Text("About us"),
-            ),
+    Future<bool> showExitPopup() async {
+      return await showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                    title: const Text("Exit"),
+                    content: const Text("Are you sure!"),
+                    actions: [
+                      TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop(false);
+                          },
+                          child: const Text("No")),
+                      TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop(true);
+                          },
+                          child: const Text("Yes"))
+                    ],
+                  )) ??
+          false;
+    }
+
+    return WillPopScope(
+      onWillPop: showExitPopup,
+      child: Scaffold(
+        appBar: AppBar(
+          actions: [
+            IconButton(
+                onPressed: () {
+                  _auth
+                      .signOut()
+                      .then((value) => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const LoginPage())))
+                      .onError((error, stackTrace) => Utilities()
+                          .toastMessage(error.toString(), color: Colors.red));
+                },
+                icon: const Icon(Icons.exit_to_app))
           ],
+          automaticallyImplyLeading: true,
+          title: const Text("PDF_gen2.0"),
+          centerTitle: true,
         ),
+        drawer: Drawer(
+          child: ListView(
+            children: const [
+              UserAccountsDrawerHeader(
+                accountName: Text("Md. Sifatullah"),
+                accountEmail: Text("sifatullahsanowar1@gmail.com"),
+                currentAccountPicture: CircleAvatar(
+                    backgroundImage: AssetImage("assets/images/dp.jpg")),
+              ),
+              ListTile(
+                leading: Icon(Icons.wallet),
+                title: Text("Donate us"),
+              ),
+              ListTile(
+                leading: Icon(Icons.info),
+                title: Text("About us"),
+              ),
+            ],
+          ),
+        ),
+        body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [Text("Congo!")]),
       ),
-      body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const [Text("Congo!")]),
     );
   }
 }
