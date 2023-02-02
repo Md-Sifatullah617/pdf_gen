@@ -18,7 +18,7 @@ class _MyHomePageState extends State<MyHomePage> {
       return await showDialog(
               context: context,
               builder: (context) => AlertDialog(
-                    title: const Text("Logout"),
+                    title: const Text("Exit"),
                     content: const Text("Are you sure!"),
                     actions: [
                       TextButton(
@@ -29,13 +29,15 @@ class _MyHomePageState extends State<MyHomePage> {
                       TextButton(
                           onPressed: () {
                             _auth
-                    .signOut()
-                    .then((value) => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const LoginPage())))
-                    .onError((error, stackTrace) => Utilities()
-                        .toastMessage(error.toString(), color: Colors.red));
+                                .signOut()
+                                .then((value) => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const LoginPage())))
+                                .onError((error, stackTrace) => Utilities()
+                                    .toastMessage(error.toString(),
+                                        color: Colors.red));
                           },
                           child: const Text("Yes"))
                     ],
@@ -46,9 +48,10 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         actions: [
-            WillPopScope(
-                onWillPop: showExitPopup,
-                child: const Icon(Icons.exit_to_app)),
+                WillPopScope(
+                  onWillPop: showExitPopup,
+                  child: IconButton(icon: const Icon(Icons.exit_to_app), onPressed: () {  },),
+                )
         ],
         automaticallyImplyLeading: true,
         title: const Text("PDF_gen2.0"),
