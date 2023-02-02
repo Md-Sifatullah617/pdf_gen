@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pdf_gen/auth/login.dart';
+import 'package:pdf_gen/auth/verification_page.dart';
 import 'package:pdf_gen/utilities/utilities.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -20,25 +21,31 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController pwdController = TextEditingController();
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  void signUp(){
+  void signUp() {
     setState(() {
-                        loading = true;
-                      });
-                      _auth
-                          .createUserWithEmailAndPassword(
-                              email: emailController.text.toString(),
-                              password: pwdController.text.toString())
-                          .then((value) {
-                        setState(() {
-                          loading = false;
-                        });
-                      }).onError((error, stackTrace) {
-                        Utilities().toastMessage(error.toString(), color: Colors.red);
-                        setState(() {
-                          loading = false;
-                        });
-                      });
+      loading = true;
+    });
+    _auth
+        .createUserWithEmailAndPassword(
+            email: emailController.text.toString(),
+            password: pwdController.text.toString())
+        .then((value) {
+      setState(() {
+        loading = false;
+      });
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const MyWidget(),
+          ));
+    }).onError((error, stackTrace) {
+      Utilities().toastMessage(error.toString(), color: Colors.red);
+      setState(() {
+        loading = false;
+      });
+    });
   }
+
   @override
   Widget build(BuildContext context) {
     ButtonStyle buttonStyle =
