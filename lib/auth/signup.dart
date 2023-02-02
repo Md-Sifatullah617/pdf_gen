@@ -14,11 +14,11 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   bool loading = false;
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController fnameController = TextEditingController();
-  final TextEditingController lnameController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController phnController = TextEditingController();
-  final TextEditingController pwdController = TextEditingController();
+  final  fnameController = TextEditingController();
+  final  lnameController = TextEditingController();
+  final  emailController = TextEditingController();
+  final  phnController = TextEditingController();
+  final  pwdController = TextEditingController();
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
   void signUp() {
