@@ -13,8 +13,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController pwdController = TextEditingController();
+  final  emailController = TextEditingController();
+  final  pwdController = TextEditingController();
   @override
   void dispose() {
     super.dispose();
@@ -144,7 +144,9 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     )
                   ],
-                )
+                ),
+                const SizedBox(height: 50,),
+                ElevatedButton(onPressed: (){}, style: buttonStyle, child: const Text("Login with Phone Number"),),
               ]),
             ),
           ),
