@@ -146,11 +146,11 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 ),
                 const SizedBox(height: 50,),
-                ElevatedButton(onPressed: (){}, style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.black,
-                    backgroundColor: Colors.white,
-                    side: const BorderSide(color: Colors.green),
-                    minimumSize: const Size(double.infinity, 50)
+                ElevatedButton(onPressed: (){}, style: const ButtonStyle(
+                    minimumSize: MaterialStatePropertyAll(Size(double.infinity, 50)),
+                    backgroundColor: MaterialStatePropertyAll(Colors.white),
+                    foregroundColor: MaterialStatePropertyAll(Colors.black),
+                    
                 ), child: const Text("Login with Phone Number"),),
               ]),
             ),
