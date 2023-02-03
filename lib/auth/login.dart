@@ -13,8 +13,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final  emailController = TextEditingController();
-  final  pwdController = TextEditingController();
+  final emailController = TextEditingController();
+  final pwdController = TextEditingController();
   @override
   void dispose() {
     super.dispose();
@@ -145,13 +145,21 @@ class _LoginPageState extends State<LoginPage> {
                     )
                   ],
                 ),
-                const SizedBox(height: 50,),
-                ElevatedButton(onPressed: (){}, style: const ButtonStyle(
-                    minimumSize: MaterialStatePropertyAll(Size(double.infinity, 50)),
-                    backgroundColor: MaterialStatePropertyAll(Colors.white),
-                    foregroundColor: MaterialStatePropertyAll(Colors.black),
-                    
-                ), child: const Text("Login with Phone Number"),),
+                const SizedBox(
+                  height: 50,
+                ),
+                ElevatedButton(
+                  onPressed: () {},
+                  style: const ButtonStyle(
+                      minimumSize:
+                          MaterialStatePropertyAll(Size(double.infinity, 50)),
+                      backgroundColor: MaterialStatePropertyAll(Colors.white),
+                      foregroundColor: MaterialStatePropertyAll(Colors.black),
+                      side: MaterialStatePropertyAll(
+                          BorderSide(color: Colors.green)),
+                      overlayColor: MaterialStatePropertyAll(Colors.green)),
+                  child: const Text("Login with Phone Number"),
+                ),
               ]),
             ),
           ),
