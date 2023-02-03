@@ -26,20 +26,9 @@ class _MyHomePageState extends State<MyHomePage> {
                             Navigator.of(context).pop(false);
                           },
                           child: const Text("No")),
-                      TextButton(
-                          onPressed: () {
-                            _auth
-                                .signOut()
-                                .then((value) => Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const LoginPage())))
-                                .onError((error, stackTrace) => Utilities()
-                                    .toastMessage(error.toString(),
-                                        color: Colors.red));
-                          },
-                          child: const Text("Yes"))
+                      TextButton(onPressed: () {
+                        Navigator.of(context).pop(true);
+                      }, child: const Text("Yes"))
                     ],
                   )) ??
           false;
@@ -48,10 +37,19 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         actions: [
-                WillPopScope(
-                  onWillPop: showExitPopup,
-                  child: IconButton(icon: const Icon(Icons.exit_to_app), onPressed: () {  },),
-                )
+          IconButton(
+            icon: const Icon(Icons.exit_to_app),
+            onPressed: () {
+              _auth
+                  .signOut()
+                  .then((value) => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LoginPage())))
+                  .onError((error, stackTrace) => Utilities()
+                      .toastMessage(error.toString(), color: Colors.red));
+            },
+          )
         ],
         automaticallyImplyLeading: true,
         title: const Text("PDF_gen2.0"),
