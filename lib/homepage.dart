@@ -14,25 +14,26 @@ class _MyHomePageState extends State<MyHomePage> {
   final _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
-    Future<bool> showExitPopup() async {
-      return await showDialog(
-              context: context,
-              builder: (context) => AlertDialog(
-                    title: const Text("Exit"),
-                    content: const Text("Are you sure!"),
-                    actions: [
-                      TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pop(false);
-                          },
-                          child: const Text("No")),
-                      TextButton(onPressed: () {
-                        Navigator.of(context).pop(true);
-                      }, child: const Text("Yes"))
-                    ],
-                  )) ??
-          false;
-    }
+    //This code is for exit pop up but not complete one
+    // Future<bool> showExitPopup() async {
+    //   return await showDialog(
+    //           context: context,
+    //           builder: (context) => AlertDialog(
+    //                 title: const Text("Exit"),
+    //                 content: const Text("Are you sure!"),
+    //                 actions: [
+    //                   TextButton(
+    //                       onPressed: () {
+    //                         Navigator.of(context).pop(false);
+    //                       },
+    //                       child: const Text("No")),
+    //                   TextButton(onPressed: () {
+    //                     Navigator.of(context).pop(true);
+    //                   }, child: const Text("Yes"))
+    //                 ],
+    //               )) ??
+    //       false;
+    // }
 
     return Scaffold(
       appBar: AppBar(
