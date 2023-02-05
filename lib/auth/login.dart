@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pdf_gen/auth/signup.dart';
+import 'package:pdf_gen/auth/verification_page.dart';
 import 'package:pdf_gen/homepage.dart';
 
 import '../utilities/utilities.dart';
@@ -149,7 +150,12 @@ class _LoginPageState extends State<LoginPage> {
                   height: 50,
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const VerificatorCode()));
+                  },
                   style: const ButtonStyle(
                       minimumSize:
                           MaterialStatePropertyAll(Size(double.infinity, 50)),

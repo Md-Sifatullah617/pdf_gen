@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class Utilities {
-  void toastMessage(String message,{required MaterialColor color}) {
+  void toastMessage(String message, {required MaterialColor color}) {
     Fluttertoast.showToast(
       msg: message,
       toastLength: Toast.LENGTH_SHORT,
@@ -13,4 +13,14 @@ class Utilities {
       fontSize: 16,
     );
   }
+  void button() {
+  const ButtonStyle(
+      minimumSize: MaterialStatePropertyAll(Size(double.infinity, 50)),
+      backgroundColor: MaterialStatePropertyAll(Colors.white),
+      foregroundColor: MaterialStatePropertyAll(Colors.black),
+      side: MaterialStatePropertyAll(BorderSide(color: Colors.green)),
+      overlayColor: MaterialStatePropertyAll(Colors.green));
 }
+}
+
+

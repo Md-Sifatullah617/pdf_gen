@@ -14,11 +14,11 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   bool loading = false;
   final _formKey = GlobalKey<FormState>();
-  final  fnameController = TextEditingController();
-  final  lnameController = TextEditingController();
-  final  emailController = TextEditingController();
-  final  phnController = TextEditingController();
-  final  pwdController = TextEditingController();
+  final fnameController = TextEditingController();
+  final lnameController = TextEditingController();
+  final emailController = TextEditingController();
+  final phnController = TextEditingController();
+  final pwdController = TextEditingController();
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
   void signUp() {
@@ -36,7 +36,7 @@ class _SignUpPageState extends State<SignUpPage> {
       Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const MyWidget(),
+            builder: (context) => const VerificatorCode(),
           ));
     }).onError((error, stackTrace) {
       Utilities().toastMessage(error.toString(), color: Colors.red);
