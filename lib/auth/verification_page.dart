@@ -1,11 +1,12 @@
-import 'dart:math';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pdf_gen/utilities/utilities.dart';
 
 class VerificatorCode extends StatelessWidget {
   VerificatorCode({super.key});
+  final bool loading = false;
   final phoneNumberController = TextEditingController();
+  final auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,9 +26,28 @@ class VerificatorCode extends StatelessWidget {
                   hintText: "+880 12345 67890", border: OutlineInputBorder()),
             ),
             const SizedBox(
-                height: 30,
+              height: 30,
             ),
-            ElevatedButton(onPressed: (){}, style: const ButtonStyle(minimumSize: MaterialStatePropertyAll(Size(double.infinity, 50))), child: const Text("Send Code"),)
+            ElevatedButton(
+              onPressed: () {
+                auth.verifyPhoneNumber(
+                    phoneNumber: phoneNumberController.text.toString(),
+                    verificationCompleted: (_) {},
+                    verificationFailed: (e) {
+                      Utilities().toastMessage(e.toString(), color: Colors.red);
+                    },
+                    codeSent: (String verificationId, int? token){
+                        
+                    },
+                    codeAutoRetrievalTimeout: (e) {
+                      Utilities().toastMessage(e.toString(), color: Colors.red);
+                    });
+              },
+              style: const ButtonStyle(
+                  minimumSize:
+                      MaterialStatePropertyAll(Size(double.infinity, 50))),
+              child: const Text("Send Code"),
+            )
           ],
         ),
       ),
