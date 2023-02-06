@@ -36,7 +36,7 @@ class _SignUpPageState extends State<SignUpPage> {
       Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const VerificatorCode(),
+            builder: (context) =>  VerificatorCode(),
           ));
     }).onError((error, stackTrace) {
       Utilities().toastMessage(error.toString(), color: Colors.red);
