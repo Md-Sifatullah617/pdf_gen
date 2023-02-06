@@ -2,11 +2,20 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pdf_gen/utilities/utilities.dart';
 
-class VerificatorCode extends StatelessWidget {
-  VerificatorCode({super.key});
-  final bool loading = false;
+class VerificatorCode extends StatefulWidget {
+  const VerificatorCode({super.key});
+
+  @override
+  State<VerificatorCode> createState() => _VerificatorCodeState();
+}
+
+class _VerificatorCodeState extends State<VerificatorCode> {
+  bool loading = false;
+
   final phoneNumberController = TextEditingController();
+
   final auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,18 +38,34 @@ class VerificatorCode extends StatelessWidget {
               height: 30,
             ),
             ElevatedButton(
+                
               onPressed: () {
+                setState(() {
+                  loading = true;
+                });
                 auth.verifyPhoneNumber(
                     phoneNumber: phoneNumberController.text.toString(),
-                    verificationCompleted: (_) {},
+                    verificationCompleted: (_) {
+                      setState(() {
+                        loading = false;
+                      });
+                    },
                     verificationFailed: (e) {
                       Utilities().toastMessage(e.toString(), color: Colors.red);
+                      setState(() {
+                        loading = false;
+                      });
                     },
-                    codeSent: (String verificationId, int? token){
-                        
+                    codeSent: (String verificationId, int? token) {
+                      setState(() {
+                        loading = false;
+                      });
                     },
                     codeAutoRetrievalTimeout: (e) {
                       Utilities().toastMessage(e.toString(), color: Colors.red);
+                      setState(() {
+                        loading = false;
+                      });
                     });
               },
               style: const ButtonStyle(
