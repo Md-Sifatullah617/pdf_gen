@@ -108,8 +108,7 @@ class _VerificatorCodeState extends State<VerificatorCode> {
                         minimumSize: MaterialStatePropertyAll(Size(double.infinity, 50))
                     ), child:const Text("Verify"),
                     )
-              ],
-              
+              ], 
             ),
           ),
         ),
