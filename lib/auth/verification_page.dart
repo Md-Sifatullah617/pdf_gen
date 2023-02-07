@@ -95,11 +95,14 @@ class _VerificatorCodeState extends State<VerificatorCode> {
                   "We have sent a verification code to this ${phoneNumberController.text} number"),
                   const SizedBox(height: 20,),
                   TextFormField(
+                    keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
                         labelText: "Enter the Code",
                         border: OutlineInputBorder()
                     ),
-                  )
+                  ),
+                  const SizedBox(height: 30,),
+                  
             ],
             
           ),
