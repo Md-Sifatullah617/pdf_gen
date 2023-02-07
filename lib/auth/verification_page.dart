@@ -30,9 +30,6 @@ class _VerificatorCodeState extends State<VerificatorCode> {
           key: _formKey,
           child: Column(
             children: [
-              const SizedBox(
-                height: 30,
-              ),
               TextFormField(
                 controller: phoneNumberController,
                 keyboardType: TextInputType.phone,
@@ -45,6 +42,7 @@ class _VerificatorCodeState extends State<VerificatorCode> {
                   return null;
                 },
               ),
+              const SizedBox(height: 30,),
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
