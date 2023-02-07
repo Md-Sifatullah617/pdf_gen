@@ -42,39 +42,41 @@ class _VerificatorCodeState extends State<VerificatorCode> {
                   return null;
                 },
               ),
-              const SizedBox(height: 30,),
+              const SizedBox(
+                height: 30,
+              ),
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     setState(() {
-                    loading = true;
-                  });
-                  auth.verifyPhoneNumber(
-                      phoneNumber: phoneNumberController.text.toString(),
-                      verificationCompleted: (_) {
-                        setState(() {
-                          loading = false;
+                      loading = true;
+                    });
+                    auth.verifyPhoneNumber(
+                        phoneNumber: phoneNumberController.text.toString(),
+                        verificationCompleted: (_) {
+                          setState(() {
+                            loading = false;
+                          });
+                        },
+                        verificationFailed: (e) {
+                          Utilities()
+                              .toastMessage(e.toString(), color: Colors.red);
+                          setState(() {
+                            loading = false;
+                          });
+                        },
+                        codeSent: (String verificationId, int? token) {
+                          setState(() {
+                            loading = false;
+                          });
+                        },
+                        codeAutoRetrievalTimeout: (e) {
+                          Utilities()
+                              .toastMessage(e.toString(), color: Colors.red);
+                          setState(() {
+                            loading = false;
+                          });
                         });
-                      },
-                      verificationFailed: (e) {
-                        Utilities()
-                            .toastMessage(e.toString(), color: Colors.red);
-                        setState(() {
-                          loading = false;
-                        });
-                      },
-                      codeSent: (String verificationId, int? token) {
-                        setState(() {
-                          loading = false;
-                        });
-                      },
-                      codeAutoRetrievalTimeout: (e) {
-                        Utilities()
-                            .toastMessage(e.toString(), color: Colors.red);
-                        setState(() {
-                          loading = false;
-                        });
-                      });
                   }
                 },
                 style: const ButtonStyle(
@@ -85,8 +87,14 @@ class _VerificatorCodeState extends State<VerificatorCode> {
                         color: Colors.white,
                       )
                     : const Text("Send Code"),
-              )
+              ),
+              const SizedBox(
+                height: 50,
+              ),
+              Text(
+                  "Enter the code that is sent to this ${phoneNumberController.text} number"),
             ],
+            
           ),
         ),
       ),
