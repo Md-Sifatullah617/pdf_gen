@@ -19,7 +19,7 @@ class _VerificatorCodeState extends State<VerificatorCode> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Verification"),
+        title: const Text("Enter Credential"),
         centerTitle: true,
         automaticallyImplyLeading: true,
       ),
@@ -66,7 +66,7 @@ class _VerificatorCodeState extends State<VerificatorCode> {
                               loading = false;
                             });
                           },
-                          codeSent: (verificationId, int? token) {
+                          codeSent: (String verificationId, int? token) {
                             setState(() {
                               loading = false;
                             });

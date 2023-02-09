@@ -5,7 +5,7 @@ import '../homepage.dart';
 import '../utilities/utilities.dart';
 
 class VerifyCode extends StatefulWidget {
-    final String verificationId;
+  final String verificationId;
   const VerifyCode({super.key, required this.verificationId});
 
   @override
@@ -25,49 +25,55 @@ class _VerifyCodeState extends State<VerifyCode> {
         centerTitle: true,
         automaticallyImplyLeading: false,
       ),
-      body: Column(children: [
-        Text(
-            "We have sent a verification code to this ${phoneNumberController.text} number"),
-        const SizedBox(
-          height: 20,
-        ),
-        TextFormField(
-          keyboardType: TextInputType.number,
-          decoration: const InputDecoration(
-              labelText: "Enter the Code", border: OutlineInputBorder()),
-        ),
-        const SizedBox(
-          height: 30,
-        ),
-        ElevatedButton(
-          onPressed: () async {
-            setState(() {
-              loading = true;
-            });
-            final credential = PhoneAuthProvider.credential(
-                verificationId: widget.verificationId,
-                smsCode: phoneNumberController.text.toString());
-
-            try {
-              await auth.signInWithCredential(credential);
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const MyHomePage()));
-            } catch (e) {
-              Utilities().toastMessage(e.toString(), color: Colors.red);
+      body: Padding(
+        padding: const EdgeInsets.all(25.0),
+        child: Column(children: [
+          Text(
+              "We have sent a verification code to this ${phoneNumberController.text} number", style: const TextStyle(fontSize: 18),),
+          const SizedBox(
+            height: 20,
+          ),
+          TextFormField(
+            keyboardType: TextInputType.number,
+            decoration: const InputDecoration(
+                labelText: "Enter the Code", border: OutlineInputBorder()),
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          ElevatedButton(
+            onPressed: () async {
               setState(() {
-                loading = false;
+                loading = true;
               });
-            }
-          },
-          style: const ButtonStyle(
-              minimumSize: MaterialStatePropertyAll(Size(double.infinity, 50))),
-          child: loading
-              ? const CircularProgressIndicator(
-                  color: Colors.white,
-                )
-              : const Text("Verify"),
-        )
-      ]),
+              final credential = PhoneAuthProvider.credential(
+                  verificationId: widget.verificationId,
+                  smsCode: phoneNumberController.text.toString());
+
+              try {
+                await auth.signInWithCredential(credential);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const MyHomePage()));
+              } catch (e) {
+                Utilities().toastMessage(e.toString(), color: Colors.red);
+                setState(() {
+                  loading = false;
+                });
+              }
+            },
+            style: const ButtonStyle(
+                minimumSize:
+                    MaterialStatePropertyAll(Size(double.infinity, 50))),
+            child: loading
+                ? const CircularProgressIndicator(
+                    color: Colors.white,
+                  )
+                : const Text("Verify"),
+          )
+        ]),
+      ),
     );
   }
 }
