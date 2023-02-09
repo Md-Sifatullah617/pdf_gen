@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:pdf_gen/homepage.dart';
+import 'package:pdf_gen/auth/verify_code.dart';
 import 'package:pdf_gen/utilities/utilities.dart';
 
 class VerificatorCode extends StatefulWidget {
@@ -11,7 +11,6 @@ class VerificatorCode extends StatefulWidget {
 
 class _VerificatorCodeState extends State<VerificatorCode> {
   bool loading = false;
-  String? verifyId;
   final phoneNumberController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   final auth = FirebaseAuth.instance;
@@ -71,7 +70,10 @@ class _VerificatorCodeState extends State<VerificatorCode> {
                             setState(() {
                               loading = false;
                             });
-                            verifyId = verificationId;
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const VerifyCode()));
                           },
                           codeAutoRetrievalTimeout: (e) {
                             Utilities()
