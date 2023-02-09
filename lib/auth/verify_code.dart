@@ -12,8 +12,8 @@ class VerifyCode extends StatefulWidget {
 }
 
 class _VerifyCodeState extends State<VerifyCode> {
-  final bool loading = false;
-
+  bool loading = false;
+  final phoneNumberController = TextEditingController();
   final auth = FirebaseAuth.instance;
 
   @override
@@ -40,9 +40,11 @@ class _VerifyCodeState extends State<VerifyCode> {
         ),
         ElevatedButton(
           onPressed: () async {
-            set
+            setState(() {
+              loading = true;
+            });
             final credential = PhoneAuthProvider.credential(
-                verificationId: verifyId!,
+                verificationId: widget.verificationId,
                 smsCode: phoneNumberController.text.toString());
 
             try {
