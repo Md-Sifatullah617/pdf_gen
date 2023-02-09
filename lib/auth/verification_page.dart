@@ -73,7 +73,7 @@ class _VerificatorCodeState extends State<VerificatorCode> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>const VerifyCode()));
+                                    builder: (context) => VerifyCode(verificationId: verificationId,)));
                           },
                           codeAutoRetrievalTimeout: (e) {
                             Utilities()

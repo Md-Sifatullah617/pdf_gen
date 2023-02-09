@@ -5,7 +5,8 @@ import '../homepage.dart';
 import '../utilities/utilities.dart';
 
 class VerifyCode extends StatefulWidget {
-  const VerifyCode({super.key});
+    final String verificationId;
+  const VerifyCode({super.key, required this.verificationId});
 
   @override
   State<VerifyCode> createState() => _VerifyCodeState();
