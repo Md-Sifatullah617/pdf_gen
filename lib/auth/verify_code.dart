@@ -4,11 +4,18 @@ import 'package:flutter/material.dart';
 import '../homepage.dart';
 import '../utilities/utilities.dart';
 
-class VerifyCode extends StatelessWidget {
-  VerifyCode({super.key});
+class VerifyCode extends StatefulWidget {
+  const VerifyCode({super.key});
 
+  @override
+  State<VerifyCode> createState() => _VerifyCodeState();
+}
+
+class _VerifyCodeState extends State<VerifyCode> {
   final bool loading = false;
+
   final auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,6 +40,7 @@ class VerifyCode extends StatelessWidget {
         ),
         ElevatedButton(
           onPressed: () async {
+            set
             final credential = PhoneAuthProvider.credential(
                 verificationId: verifyId!,
                 smsCode: phoneNumberController.text.toString());
@@ -41,9 +49,6 @@ class VerifyCode extends StatelessWidget {
               await auth.signInWithCredential(credential);
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const MyHomePage()));
-              setState(() {
-                loading = true;
-              });
             } catch (e) {
               Utilities().toastMessage(e.toString(), color: Colors.red);
               setState(() {
