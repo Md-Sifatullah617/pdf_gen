@@ -110,9 +110,6 @@ class _VerificatorCodeState extends State<VerificatorCode> {
                 ),
                 ElevatedButton(
                   onPressed: () async {
-                    setState(() {
-                      loading = true;
-                    });
                     final credential = PhoneAuthProvider.credential(
                         verificationId: verifyId,
                         smsCode: phoneNumberController.text.toString());
