@@ -6,7 +6,8 @@ import '../utilities/utilities.dart';
 
 class VerifyCode extends StatefulWidget {
   final String verificationId;
-  const VerifyCode({super.key, required this.verificationId});
+  final String phoneNumber;
+  const VerifyCode({super.key, required this.verificationId, required this.phoneNumber});
 
   @override
   State<VerifyCode> createState() => _VerifyCodeState();
@@ -14,7 +15,7 @@ class VerifyCode extends StatefulWidget {
 
 class _VerifyCodeState extends State<VerifyCode> {
   bool loading = false;
-  final phoneNumberController = TextEditingController();
+  final vcode = TextEditingController();
   final auth = FirebaseAuth.instance;
 
   @override
@@ -29,11 +30,14 @@ class _VerifyCodeState extends State<VerifyCode> {
         padding: const EdgeInsets.all(25.0),
         child: Column(children: [
           Text(
-              "We have sent a verification code to this ${phoneNumberController.text} number", style: const TextStyle(fontSize: 18),),
+            "We have sent a verification code to this ${widget.phoneNumber} number",
+            style: const TextStyle(fontSize: 18),
+          ),
           const SizedBox(
             height: 20,
           ),
           TextFormField(
+            controller: vcode,
             keyboardType: TextInputType.number,
             decoration: const InputDecoration(
                 labelText: "Enter the Code", border: OutlineInputBorder()),
@@ -48,8 +52,7 @@ class _VerifyCodeState extends State<VerifyCode> {
               });
               final credential = PhoneAuthProvider.credential(
                   verificationId: widget.verificationId,
-                  smsCode: phoneNumberController.text.toString());
-
+                  smsCode: vcode.text.toString());
               try {
                 await auth.signInWithCredential(credential);
                 Navigator.push(
