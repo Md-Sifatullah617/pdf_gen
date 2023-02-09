@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:pdf_gen/auth/signup.dart';
 
 import '../homepage.dart';
 import '../utilities/utilities.dart';
@@ -58,7 +59,7 @@ class _VerifyCodeState extends State<VerifyCode> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const MyHomePage()));
+                        builder: (context) => SignUpPage(phoneNumber: widget.phoneNumber,)));
               } catch (e) {
                 Utilities().toastMessage(e.toString(), color: Colors.red);
                 setState(() {

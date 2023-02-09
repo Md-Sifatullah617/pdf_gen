@@ -2,10 +2,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pdf_gen/auth/login.dart';
 import 'package:pdf_gen/auth/verification_page.dart';
+import 'package:pdf_gen/homepage.dart';
 import 'package:pdf_gen/utilities/utilities.dart';
 
 class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key});
+  final String phoneNumber;
+  const SignUpPage({super.key, required this.phoneNumber});
 
   @override
   State<SignUpPage> createState() => _SignUpPageState();
@@ -36,7 +38,7 @@ class _SignUpPageState extends State<SignUpPage> {
       Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) =>  VerificatorCode(),
+            builder: (context) => const MyHomePage(),
           ));
     }).onError((error, stackTrace) {
       Utilities().toastMessage(error.toString(), color: Colors.red);
@@ -115,12 +117,14 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               TextFormField(
                 controller: phnController,
+                initialValue: widget.phoneNumber,
                 keyboardType: TextInputType.phone,
                 decoration: const InputDecoration(
+                    filled: true,
                     labelText: "Phone Number", border: OutlineInputBorder()),
                 validator: (value) {
                   if (value!.isEmpty) {
-                    return null;
+                    return "*required";
                   }
                   return null;
                 },
