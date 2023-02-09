@@ -11,7 +11,7 @@ class VerificatorCode extends StatefulWidget {
 
 class _VerificatorCodeState extends State<VerificatorCode> {
   bool loading = false;
-  late String verifyId;
+  String? verifyId;
   final phoneNumberController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   final auth = FirebaseAuth.instance;
@@ -91,50 +91,6 @@ class _VerificatorCodeState extends State<VerificatorCode> {
                         )
                       : const Text("Send Code"),
                 ),
-                const SizedBox(
-                  height: 50,
-                ),
-                Text(
-                    "We have sent a verification code to this ${phoneNumberController.text} number"),
-                const SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  keyboardType: TextInputType.number,
-                  decoration: const InputDecoration(
-                      labelText: "Enter the Code",
-                      border: OutlineInputBorder()),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                ElevatedButton(
-                  onPressed: () async {
-                    final credential = PhoneAuthProvider.credential(
-                        verificationId: verifyId,
-                        smsCode: phoneNumberController.text.toString());
-                    try {
-                      await auth.signInWithCredential(credential);
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const MyHomePage()));
-                    } catch (e) {
-                      Utilities().toastMessage(e.toString(), color: Colors.red);
-                      setState(() {
-                        loading = false;
-                      });
-                    }
-                  },
-                  style: const ButtonStyle(
-                      minimumSize:
-                          MaterialStatePropertyAll(Size(double.infinity, 50))),
-                  child: loading
-                      ? const CircularProgressIndicator(
-                          color: Colors.white,
-                        )
-                      : const Text("Verify"),
-                )
               ],
             ),
           ),
