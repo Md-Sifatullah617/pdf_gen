@@ -76,9 +76,18 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const [Text("Congo!")]),
+      body: Padding(
+        padding: const EdgeInsets.all(25.0),
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              InkWell(
+                onTap: (){
+
+                },
+                child: const Image(image: AssetImage("assets/images/qr_Scanner.gif"))),
+            ]),
+      ),
     );
   }
 }
