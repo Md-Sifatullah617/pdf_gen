@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:pdf_gen/QR_Code/scanner.dart';
 import 'package:pdf_gen/auth/login.dart';
 import 'package:pdf_gen/utilities/utilities.dart';
 
@@ -78,15 +79,17 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(25.0),
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              InkWell(
-                onTap: (){
-
-                },
-                child: const Image(image: AssetImage("assets/images/qr_Scanner.gif"))),
-            ]),
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ScannerPdf()));
+              },
+              child: const Image(
+                  image: AssetImage("assets/images/qr_Scanner.gif"))),
+        ]),
       ),
     );
   }
