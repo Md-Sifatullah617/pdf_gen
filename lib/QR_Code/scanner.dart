@@ -23,6 +23,7 @@ class _ScannerPdfState extends State<ScannerPdf> {
                         Text("Place the QR code in the area", style: TextStyle(fontWeight: FontWeight.bold,
                         fontSize: 18,
                         letterSpacing: 1),),
+                        SizedBox(height: 10,),
                         Text("Scanning will start automatically")
                     ],
                 )),
