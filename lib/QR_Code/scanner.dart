@@ -23,6 +23,28 @@ class _ScannerPdfState extends State<ScannerPdf> {
       appBar: AppBar(
         title: const Text("Scanner"),
         centerTitle: true,
+        actions: [
+          IconButton(
+              onPressed: () {
+                cameraController.toggleTorch();
+              },
+              icon: ValueListenableBuilder(
+                  valueListenable: cameraController.torchState,
+                  builder: (context, state, child) {
+                    switch (state as TorchState) {
+                      case TorchState.off:
+                        return const Icon(
+                          Icons.flash_off,
+                          color: Colors.grey,
+                        );
+                      case TorchState.on:
+                        return const Icon(
+                          Icons.flash_on,
+                          color: Colors.yellow,
+                        );
+                    }
+                  }))
+        ],
       ),
       body: Column(
         children: [
