@@ -34,9 +34,12 @@ class _ScannerPdfState extends State<ScannerPdf> {
                 )),
                 Expanded(
                     flex: 4,
-                    child: MobileScanner(onDetect: (barcodes) {
-                      
-                    },),),
+                    child: Padding(
+                      padding: const EdgeInsets.all(25.0),
+                      child: MobileScanner(onDetect: (barcodes) {
+                        
+                      },),
+                    ),),
                 Expanded(child: Container(
                     alignment: Alignment.center,
                     child: const Text("Developed by Md. Sifatullah",
