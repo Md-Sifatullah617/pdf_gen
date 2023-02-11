@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
@@ -51,7 +53,13 @@ class _ScannerPdfState extends State<ScannerPdf> {
             child: Padding(
               padding: const EdgeInsets.all(25.0),
               child: MobileScanner(
-                onDetect: (barcodes) {},
+                onDetect: (capture) {
+                  final List<Barcode> barcodes = capture.barcodes;
+                  final Uint8List? image = capture.image;
+                  for (final barcode in barcodes) {
+                    debugPrint('Barcode found! ${barcode.rawValue}');
+                  }
+                },
               ),
             ),
           ),
