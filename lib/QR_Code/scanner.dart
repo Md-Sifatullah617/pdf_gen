@@ -34,7 +34,14 @@ class _ScannerPdfState extends State<ScannerPdf> {
                 Expanded(
                     flex: 4,
                     child: Container(color: Colors.green,)),
-                Expanded(child: Container(color: Colors.blue,)),
+                Expanded(child: Container(
+                    alignment: Alignment.center,
+                    child: const Text("Developed by Md. Sifatullah",
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black54
+                    ),),
+                )),
             ],
         ),
     );
