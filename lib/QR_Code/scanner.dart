@@ -91,8 +91,8 @@ class _ScannerPdfState extends State<ScannerPdf> {
             flex: 4,
             child: Padding(
               padding: const EdgeInsets.all(25.0),
-              child: MobileScanner(
-                onDetect: closeScan,
+              child: MobileScanner(onDetect: (BarcodeCapture barcodes) {  },
+                
               ),
             ),
           ),
