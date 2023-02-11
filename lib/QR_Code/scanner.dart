@@ -24,7 +24,11 @@ class _ScannerPdfState extends State<ScannerPdf> {
                         fontSize: 18,
                         letterSpacing: 1),),
                         SizedBox(height: 10,),
-                        Text("Scanning will start automatically")
+                        Text("Scanning will start automatically",
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black54,
+                        ),)
                     ],
                 )),
                 Expanded(
