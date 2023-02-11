@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
 
 class ScannerPdf extends StatefulWidget {
   const ScannerPdf({super.key});
@@ -33,7 +34,9 @@ class _ScannerPdfState extends State<ScannerPdf> {
                 )),
                 Expanded(
                     flex: 4,
-                    child: Container(color: Colors.green,)),
+                    child: MobileScanner(onDetect: (barcodes) {
+                      
+                    },),),
                 Expanded(child: Container(
                     alignment: Alignment.center,
                     child: const Text("Developed by Md. Sifatullah",
