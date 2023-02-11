@@ -13,9 +13,7 @@ class ScannerPdf extends StatefulWidget {
 class _ScannerPdfState extends State<ScannerPdf> {
   MobileScannerController cameraController = MobileScannerController();
   bool isScanComplete = false;
-  void closeScan() {
-    isScanComplete = false;
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +26,8 @@ class _ScannerPdfState extends State<ScannerPdf> {
               onPressed: () {
                 cameraController.toggleTorch();
               },
+              color: Colors.white,
+              iconSize: 32,
               icon: ValueListenableBuilder(
                   valueListenable: cameraController.torchState,
                   builder: (context, state, child) {
@@ -43,7 +43,23 @@ class _ScannerPdfState extends State<ScannerPdf> {
                           color: Colors.yellow,
                         );
                     }
-                  }))
+                  })),
+          IconButton(
+            color: Colors.white,
+            icon: ValueListenableBuilder(
+              valueListenable: cameraController.cameraFacingState,
+              builder: (context, state, child) {
+                switch (state as CameraFacing) {
+                  case CameraFacing.front:
+                    return const Icon(Icons.camera_front);
+                  case CameraFacing.back:
+                    return const Icon(Icons.camera_rear);
+                }
+              },
+            ),
+            iconSize: 32.0,
+            onPressed: () => cameraController.switchCamera(),
+          ),
         ],
       ),
       body: Column(
@@ -76,7 +92,7 @@ class _ScannerPdfState extends State<ScannerPdf> {
             child: Padding(
               padding: const EdgeInsets.all(25.0),
               child: MobileScanner(
-                onDetect: (BarcodeCapture barcodes) {},
+                onDetect: closeScan,
               ),
             ),
           ),
