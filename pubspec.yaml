@@ -41,6 +41,7 @@ dependencies:
   fluttertoast: ^8.1.2
   email_auth: ^1.0.0
   mobile_scanner: ^3.0.0
+  barcode_widget: ^2.0.3
 
 dev_dependencies:
   flutter_test:
