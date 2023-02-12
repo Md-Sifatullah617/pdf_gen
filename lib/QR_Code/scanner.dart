@@ -11,7 +11,6 @@ class ScannerPdf extends StatefulWidget {
 class _ScannerPdfState extends State<ScannerPdf> {
   final txtController = TextEditingController();
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,64 +18,50 @@ class _ScannerPdfState extends State<ScannerPdf> {
         title: const Text("Scanner"),
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          Expanded(
-              child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Text(
-                "Place the QR code in the area",
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                    letterSpacing: 1),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                "Scanning will start automatically",
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.black54,
-                ),
-              )
-            ],
-          )),
-          Expanded(
-            flex: 4,
-            child: Padding(
-              padding: const EdgeInsets.all(25.0),
-              child: Column(
-                children: [
-                    BarcodeWidget(data: txtController.text,
-                    color: Colors.white,
-                    width: 200,
-                    height: 200,
-                    barcode: Barcode.qrCode()),
-                    TextFormField(
-                        controller: txtController,
-                        decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            hintText: "Enter your text"
-                            
+      body: Padding(
+        padding: const EdgeInsets.all(25.0),
+        child: Column(
+          children: [
+            BarcodeWidget(
+                        data: txtController.text,
+                        color: Colors.white,
+                        width: 200,
+                        height: 200,
+                        barcode: Barcode.qrCode()),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    Row(
+                      children: [
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 20),
+                              child: TextField(
+                                controller: txtController,
+                                decoration: const InputDecoration(border: OutlineInputBorder()),
+                              ),
+                            ),
+                          ),
+                        FloatingActionButton(onPressed: (){
+                            setState(() {
+                              
+                            });
+                        },
+                        backgroundColor: Theme.of(context).primaryColor,
+                        child: const Icon(Icons.done),
                         ),
-                    )
-                ],
-              )
-                
+                        
+                      ],
+                    ),
+            Container(
+              alignment: Alignment.center,
+              child: const Text(
+            "Developed by Md. Sifatullah",
+            style: TextStyle(fontSize: 16, color: Colors.black54),
               ),
             ),
-          Expanded(
-              child: Container(
-            alignment: Alignment.center,
-            child: const Text(
-              "Developed by Md. Sifatullah",
-              style: TextStyle(fontSize: 16, color: Colors.black54),
-            ),
-          )),
-        ],
+          ],
+        ),
       ),
     );
   }
