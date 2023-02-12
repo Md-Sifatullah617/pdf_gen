@@ -74,15 +74,13 @@ class _GeneratorState extends State<Generator> {
           Row(
             children: [
               Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: TextField(
-                    controller: txtController,
-                    decoration:
-                        const InputDecoration(border: OutlineInputBorder()),
-                  ),
+                child: TextField(
+                  controller: txtController,
+                  decoration:
+                      const InputDecoration(border: OutlineInputBorder()),
                 ),
               ),
+              const SizedBox(width: 15,),
               FloatingActionButton(
                 onPressed: () {
                   setState(() {});
