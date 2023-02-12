@@ -50,12 +50,17 @@ class _ScannerPdfState extends State<ScannerPdf> {
               padding: const EdgeInsets.all(25.0),
               child: Column(
                 children: [
-                    BarcodeWidget(data: txtController.text, 
+                    BarcodeWidget(data: txtController.text,
+                    color: Colors.white,
+                    width: 200,
+                    height: 200,
                     barcode: Barcode.qrCode()),
                     TextFormField(
                         controller: txtController,
                         decoration: const InputDecoration(
-                            border: OutlineInputBorder()
+                            border: OutlineInputBorder(),
+                            hintText: "Enter your text"
+                            
                         ),
                     )
                 ],
@@ -63,7 +68,6 @@ class _ScannerPdfState extends State<ScannerPdf> {
                 
               ),
             ),
-          ),
           Expanded(
               child: Container(
             alignment: Alignment.center,
