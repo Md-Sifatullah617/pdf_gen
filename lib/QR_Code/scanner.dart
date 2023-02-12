@@ -1,5 +1,5 @@
+import 'package:barcode_widget/barcode_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile_scanner/mobile_scanner.dart';
 
 class ScannerPdf extends StatefulWidget {
   const ScannerPdf({super.key});
@@ -9,8 +9,7 @@ class ScannerPdf extends StatefulWidget {
 }
 
 class _ScannerPdfState extends State<ScannerPdf> {
-  MobileScannerController cameraController = MobileScannerController();
-  bool isScanComplete = false;
+  final txtController = TextEditingController();
 
 
   @override
@@ -49,7 +48,18 @@ class _ScannerPdfState extends State<ScannerPdf> {
             flex: 4,
             child: Padding(
               padding: const EdgeInsets.all(25.0),
-              child: MobileScanner(onDetect: (BarcodeCapture barcodes) {  },
+              child: Column(
+                children: [
+                    BarcodeWidget(data: txtController.text, 
+                    barcode: Barcode.qrCode()),
+                    TextFormField(
+                        controller: txtController,
+                        decoration: const InputDecoration(
+                            border: OutlineInputBorder()
+                        ),
+                    )
+                ],
+              )
                 
               ),
             ),
