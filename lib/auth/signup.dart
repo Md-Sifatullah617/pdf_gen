@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pdf_gen/auth/login.dart';
-import 'package:pdf_gen/auth/verification_page.dart';
 import 'package:pdf_gen/homepage.dart';
 import 'package:pdf_gen/utilities/utilities.dart';
 
