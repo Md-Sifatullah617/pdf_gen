@@ -163,9 +163,13 @@ class _ScannerFState extends State<ScannerF> {
                       const InputDecoration(border: OutlineInputBorder()),
                 ),
               ),
-              const SizedBox(width: 15,),
+              const SizedBox(
+                width: 15,
+              ),
               FloatingActionButton(
-                onPressed: () {},
+                onPressed: () {
+                  Clipboard.setData(ClipboardData(text: txtController.text));
+                },
                 child: const Icon(Icons.copy),
               )
             ],
