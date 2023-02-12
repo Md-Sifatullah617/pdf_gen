@@ -120,11 +120,12 @@ class _ScannerFState extends State<ScannerF> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-            const Text("Scan Result", style: TextStyle(
+            const Text("Scan Result", 
+            style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
-                color: Colors.white
             ),),
             const SizedBox(height: 20,),
             ElevatedButton(onPressed: (){}, child: const Text("Scan QR Code"))
