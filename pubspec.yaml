@@ -42,6 +42,7 @@ dependencies:
   email_auth: ^1.0.0
   mobile_scanner: ^3.0.0
   barcode_widget: ^2.0.3
+  flutter_barcode_scanner: ^2.0.0
 
 dev_dependencies:
   flutter_test:
