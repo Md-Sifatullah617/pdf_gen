@@ -121,47 +121,13 @@ class _ScannerFState extends State<ScannerF> {
     return Scaffold(
       body: Column(
         children: [
-          Expanded(
-            child: BarcodeWidget(
-                data: txtController.text,
-                color: Colors.red,
-                width: 200,
-                height: 200,
-                barcode: Barcode.qrCode()),
-          ),
-          const SizedBox(
-            height: 40,
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: TextField(
-                    controller: txtController,
-                    decoration:
-                        const InputDecoration(border: OutlineInputBorder()),
-                  ),
-                ),
-              ),
-              FloatingActionButton(
-                onPressed: () {
-                  setState(() {});
-                },
-                backgroundColor: Theme.of(context).primaryColor,
-                child: const Icon(Icons.done),
-              ),
-            ],
-          ),
-          Expanded(
-            child: Container(
-              alignment: Alignment.center,
-              child: const Text(
-                "Developed by Md. Sifatullah",
-                style: TextStyle(fontSize: 16, color: Colors.black54),
-              ),
-            ),
-          ),
+            const Text("Scan Result", style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+                color: Colors.white
+            ),),
+            const SizedBox(height: 20,),
+            ElevatedButton(onPressed: (){}, child: const Text("Scan QR Code"))
         ],
       ),
     );
