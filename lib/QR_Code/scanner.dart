@@ -154,10 +154,21 @@ class _ScannerFState extends State<ScannerF> {
           const SizedBox(
             height: 10,
           ),
-          TextField(
-            controller: txtController,
-            decoration: const InputDecoration(
-                border: OutlineInputBorder()),
+          Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  controller: txtController,
+                  decoration:
+                      const InputDecoration(border: OutlineInputBorder()),
+                ),
+              ),
+              const SizedBox(width: 15,),
+              FloatingActionButton(
+                onPressed: () {},
+                child: const Icon(Icons.copy),
+              )
+            ],
           ),
           const SizedBox(
             height: 20,
