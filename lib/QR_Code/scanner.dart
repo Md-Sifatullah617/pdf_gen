@@ -116,18 +116,25 @@ class ScannerF extends StatefulWidget {
 class _ScannerFState extends State<ScannerF> {
   final txtController = TextEditingController();
   String qrCode = 'unknown';
+  @override
+  void initState() {
+    super.initState();
+    txtController.text = qrCode;
+  }
+
   Future<void> scanQRCode() async {
-      try {
-        final qrCode = await FlutterBarcodeScanner.scanBarcode(
-            '#ff6666', 'Cancle', true, ScanMode.QR);
-        if (!mounted) return;
-        setState(() {
-          this.qrCode = qrCode;
-        });
-      } on PlatformException {
-        qrCode = 'Failled to get platform version.';
-      }
+    try {
+      final qrCode = await FlutterBarcodeScanner.scanBarcode(
+          '#ff6666', 'Cancle', true, ScanMode.QR);
+      if (!mounted) return;
+      setState(() {
+        this.qrCode = qrCode;
+      });
+    } on PlatformException {
+      qrCode = 'Failled to get platform version.';
     }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -147,7 +154,11 @@ class _ScannerFState extends State<ScannerF> {
           const SizedBox(
             height: 10,
           ),
-          Text(qrCode),
+          TextField(
+            controller: txtController,
+            decoration: const InputDecoration(
+                border: OutlineInputBorder()),
+          ),
           const SizedBox(
             height: 20,
           ),
