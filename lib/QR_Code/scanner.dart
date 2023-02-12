@@ -1,5 +1,7 @@
 import 'package:barcode_widget/barcode_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 
 class ScannerPdf extends StatefulWidget {
   const ScannerPdf({super.key});
@@ -16,10 +18,7 @@ class _ScannerPdfState extends State<ScannerPdf> {
     });
   }
 
-  static const List widgetsOption = [
-    Generator(),
-    ScannerF()
-  ];
+  static const List widgetsOption = [Generator(), ScannerF()];
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +79,9 @@ class _GeneratorState extends State<Generator> {
                       const InputDecoration(border: OutlineInputBorder()),
                 ),
               ),
-              const SizedBox(width: 15,),
+              const SizedBox(
+                width: 15,
+              ),
               FloatingActionButton(
                 onPressed: () {
                   setState(() {});
@@ -114,19 +115,47 @@ class ScannerF extends StatefulWidget {
 
 class _ScannerFState extends State<ScannerF> {
   final txtController = TextEditingController();
+  String qrCode = 'unknown';
+  Future<void> scanQRCode() async {
+      try {
+        final qrCode = await FlutterBarcodeScanner.scanBarcode(
+            '#ff6666', 'Cancle', true, ScanMode.QR);
+        if (!mounted) return;
+        setState(() {
+          this.qrCode = qrCode;
+        });
+      } on PlatformException {
+        qrCode = 'Failled to get platform version.';
+      }
+    }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-            const Text("Scan Result", 
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-            ),),
-            const SizedBox(height: 20,),
-            ElevatedButton(onPressed: (){}, child: const Text("Scan QR Code"))
+          const Center(
+            child: Text(
+              "Scan Result",
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 25,
+                  color: Color.fromARGB(193, 0, 0, 0),
+                  letterSpacing: 2),
+            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Text(qrCode),
+          const SizedBox(
+            height: 20,
+          ),
+          ElevatedButton(
+              onPressed: () {
+                scanQRCode();
+              },
+              child: const Text("Scan QR Code"))
         ],
       ),
     );
