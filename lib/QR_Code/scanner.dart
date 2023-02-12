@@ -10,6 +10,12 @@ class ScannerPdf extends StatefulWidget {
 
 class _ScannerPdfState extends State<ScannerPdf> {
   final txtController = TextEditingController();
+  int seletedItem = 0;
+  void onItemTapped(int index) {
+    setState(() {
+      seletedItem = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,46 +24,58 @@ class _ScannerPdfState extends State<ScannerPdf> {
         title: const Text("Scanner"),
         centerTitle: true,
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: seletedItem,
+        onTap: onItemTapped,
+        items: const [
+        BottomNavigationBarItem(icon: Icon(Icons.scanner), label: "generator",
+        
+        ),
+        BottomNavigationBarItem(icon: Icon(Icons.qr_code), label: "Scanner"),
+      ]),
       body: Padding(
         padding: const EdgeInsets.all(25.0),
         child: Column(
           children: [
-            BarcodeWidget(
-                        data: txtController.text,
-                        color: Colors.white,
-                        width: 200,
-                        height: 200,
-                        barcode: Barcode.qrCode()),
-                    const SizedBox(
-                      height: 40,
+            Expanded(
+              child: BarcodeWidget(
+                  data: txtController.text,
+                  color: Colors.red,
+                  width: 200,
+                  height: 200,
+                  barcode: Barcode.qrCode()),
+            ),
+            const SizedBox(
+              height: 40,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: TextField(
+                      controller: txtController,
+                      decoration:
+                          const InputDecoration(border: OutlineInputBorder()),
                     ),
-                    Row(
-                      children: [
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 20),
-                              child: TextField(
-                                controller: txtController,
-                                decoration: const InputDecoration(border: OutlineInputBorder()),
-                              ),
-                            ),
-                          ),
-                        FloatingActionButton(onPressed: (){
-                            setState(() {
-                              
-                            });
-                        },
-                        backgroundColor: Theme.of(context).primaryColor,
-                        child: const Icon(Icons.done),
-                        ),
-                        
-                      ],
-                    ),
-            Container(
-              alignment: Alignment.center,
-              child: const Text(
-            "Developed by Md. Sifatullah",
-            style: TextStyle(fontSize: 16, color: Colors.black54),
+                  ),
+                ),
+                FloatingActionButton(
+                  onPressed: () {
+                    setState(() {});
+                  },
+                  backgroundColor: Theme.of(context).primaryColor,
+                  child: const Icon(Icons.done),
+                ),
+              ],
+            ),
+            Expanded(
+              child: Container(
+                alignment: Alignment.center,
+                child: const Text(
+                  "Developed by Md. Sifatullah",
+                  style: TextStyle(fontSize: 16, color: Colors.black54),
+                ),
               ),
             ),
           ],
