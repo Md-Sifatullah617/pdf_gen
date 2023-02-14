@@ -116,11 +116,6 @@ class ScannerF extends StatefulWidget {
 class _ScannerFState extends State<ScannerF> {
   final txtController = TextEditingController();
   String qrCode = 'unknown';
-  @override
-  void initState() {
-    super.initState();
-    txtController.text = qrCode;
-  }
 
   Future<void> scanQRCode() async {
     try {
@@ -136,7 +131,15 @@ class _ScannerFState extends State<ScannerF> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    txtController.text = qrCode;
+  }
+
+  @override
   Widget build(BuildContext context) {
+    ButtonStyle buttonStyle =
+        ElevatedButton.styleFrom(minimumSize: const Size(double.infinity, 50));
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -181,6 +184,7 @@ class _ScannerFState extends State<ScannerF> {
               onPressed: () {
                 scanQRCode();
               },
+              style: buttonStyle,
               child: const Text("Scan QR Code"))
         ],
       ),

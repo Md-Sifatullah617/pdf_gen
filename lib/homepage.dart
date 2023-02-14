@@ -36,60 +36,63 @@ class _MyHomePageState extends State<MyHomePage> {
     //       false;
     // }
 
-    return Scaffold(
-      appBar: AppBar(
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.exit_to_app),
-            onPressed: () {
-              _auth
-                  .signOut()
-                  .then((value) => Navigator.push(
+    return WillPopScope(
+        onWillPop: () async => false,
+      child: Scaffold(
+        appBar: AppBar(
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.exit_to_app),
+              onPressed: () {
+                _auth
+                    .signOut()
+                    .then((value) => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const LoginPage())))
+                    .onError((error, stackTrace) => Utilities()
+                        .toastMessage(error.toString(), color: Colors.red));
+              },
+            )
+          ],
+          automaticallyImplyLeading: true,
+          title: const Text("PDF_gen2.0"),
+          centerTitle: true,
+        ),
+        drawer: Drawer(
+          child: ListView(
+            children: const [
+              UserAccountsDrawerHeader(
+                accountName: Text("Md. Sifatullah"),
+                accountEmail: Text("sifatullahsanowar1@gmail.com"),
+                currentAccountPicture: CircleAvatar(
+                    backgroundImage: AssetImage("assets/images/dp.jpg")),
+              ),
+              ListTile(
+                leading: Icon(Icons.wallet),
+                title: Text("Donate us"),
+              ),
+              ListTile(
+                leading: Icon(Icons.info),
+                title: Text("About us"),
+              ),
+            ],
+          ),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(25.0),
+          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            InkWell(
+                onTap: () {
+                  Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const LoginPage())))
-                  .onError((error, stackTrace) => Utilities()
-                      .toastMessage(error.toString(), color: Colors.red));
-            },
-          )
-        ],
-        automaticallyImplyLeading: true,
-        title: const Text("PDF_gen2.0"),
-        centerTitle: true,
-      ),
-      drawer: Drawer(
-        child: ListView(
-          children: const [
-            UserAccountsDrawerHeader(
-              accountName: Text("Md. Sifatullah"),
-              accountEmail: Text("sifatullahsanowar1@gmail.com"),
-              currentAccountPicture: CircleAvatar(
-                  backgroundImage: AssetImage("assets/images/dp.jpg")),
-            ),
-            ListTile(
-              leading: Icon(Icons.wallet),
-              title: Text("Donate us"),
-            ),
-            ListTile(
-              leading: Icon(Icons.info),
-              title: Text("About us"),
-            ),
-          ],
+                          builder: (context) => const ScannerPdf()));
+                },
+                child: const Image(
+                    image: AssetImage("assets/images/qr_Scanner.gif"))),
+          ]),
         ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(25.0),
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          InkWell(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ScannerPdf()));
-              },
-              child: const Image(
-                  image: AssetImage("assets/images/qr_Scanner.gif"))),
-        ]),
       ),
     );
   }

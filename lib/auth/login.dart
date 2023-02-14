@@ -52,16 +52,12 @@ class _LoginPageState extends State<LoginPage> {
     });
   }
 
-  Future<bool> _onwillPop() async {
-    return false;
-  }
-
   @override
   Widget build(BuildContext context) {
     ButtonStyle buttonStyle =
         ElevatedButton.styleFrom(minimumSize: const Size(double.infinity, 50));
     return WillPopScope(
-      onWillPop: _onwillPop,
+      onWillPop: ()async => false,
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
