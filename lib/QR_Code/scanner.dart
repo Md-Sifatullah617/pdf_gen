@@ -131,8 +131,6 @@ class _ScannerFState extends State<ScannerF> {
 
   @override
   Widget build(BuildContext context) {
-    ButtonStyle buttonStyle =
-        ElevatedButton.styleFrom(minimumSize: const Size(double.infinity, 50));
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -149,6 +147,7 @@ class _ScannerFState extends State<ScannerF> {
                   onQRViewCreated: (qrCtrl) {
                     setState(() {
                       this.qrCtrl = qrCtrl;
+                      txtController.text=qrCtrl.toString();
                     });
                   },
                 overlay: QrScannerOverlayShape(
@@ -180,6 +179,7 @@ class _ScannerFState extends State<ScannerF> {
               children: [
                 Expanded(
                   child: TextField(
+                    readOnly: true,
                     controller: txtController,
                     decoration:
                         const InputDecoration(border: OutlineInputBorder()),
