@@ -122,6 +122,7 @@ class _ScannerFState extends State<ScannerF> {
   final txtController = TextEditingController();
   final qrKey = GlobalKey(debugLabel: 'QR');
   QRViewController? qrCtrl;
+  Barcode? barcode;
 
   @override
   void dispose() {
@@ -143,19 +144,24 @@ class _ScannerFState extends State<ScannerF> {
               height: 200,
               width: 200,
               child: QRView(
-                  key: qrKey,
-                  onQRViewCreated: (qrCtrl) {
+                key: qrKey,
+                onQRViewCreated: (qrCtrl) {
+                  setState(() {
+                    this.qrCtrl = qrCtrl;
+                  });
+                  qrCtrl.scannedDataStream.listen((barcode) {
                     setState(() {
-                      this.qrCtrl = qrCtrl;
-                      txtController.text=qrCtrl.toString();
+                      this.barcode = barcode;
+                      txtController.text = '${barcode.code}';
                     });
-                  },
+                  });
+                },
                 overlay: QrScannerOverlayShape(
                   borderColor: Colors.green,
                   borderRadius: 10,
                   borderLength: 20,
                   borderWidth: 10,
-                  cutOutSize: MediaQuery.of(context).size.width*1,
+                  cutOutSize: MediaQuery.of(context).size.width * 1,
                 ),
               ),
             ),
@@ -178,11 +184,21 @@ class _ScannerFState extends State<ScannerF> {
             Row(
               children: [
                 Expanded(
-                  child: TextField(
-                    readOnly: true,
-                    controller: txtController,
-                    decoration:
-                        const InputDecoration(border: OutlineInputBorder()),
+                  child: SizedBox(
+                    height: 200,
+                    width: double.infinity,
+                    child: TextField(
+                      textAlignVertical: TextAlignVertical.top,
+                      expands: true,
+                      maxLines: null,
+                      readOnly: true,
+                      controller: txtController,
+                      decoration: const InputDecoration(
+
+                        filled: true,
+                          border: OutlineInputBorder(
+                          ), labelText: 'Scan First!'),
+                    ),
                   ),
                 ),
                 const SizedBox(
