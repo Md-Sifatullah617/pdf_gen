@@ -57,8 +57,10 @@ class _GeneratorState extends State<Generator> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Expanded(
+            flex: 40,
               child: Column(
             children: [
               QrImage(
@@ -67,13 +69,13 @@ class _GeneratorState extends State<Generator> {
               ),
             ],
           )),
-          const SizedBox(
-            height: 40,
-          ),
           Expanded(
+            flex: 40,
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(
+                Flexible(
+                  flex: 1,
                   child: TextField(
                     controller: txtController,
                     decoration:
@@ -94,6 +96,7 @@ class _GeneratorState extends State<Generator> {
             ),
           ),
           Expanded(
+            flex: 20,
             child: Container(
               alignment: Alignment.center,
               child: const Text(
