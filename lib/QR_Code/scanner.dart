@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mobile_scanner/mobile_scanner.dart';
 
 class ScannerPdf extends StatefulWidget {
   const ScannerPdf({super.key});
@@ -107,7 +106,6 @@ class ScannerF extends StatefulWidget {
 
 class _ScannerFState extends State<ScannerF> {
   final txtController = TextEditingController();
-  final msController = MobileScannerController();
   String qrText = 'Default';
 
   @override
