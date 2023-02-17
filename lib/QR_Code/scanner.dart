@@ -56,22 +56,21 @@ class _GeneratorState extends State<Generator> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Expanded(
-            flex: 40,
-              child: Column(
-            children: [
-              QrImage(
-                data: txtController.text,
-                size: 200,
-              ),
-            ],
-          )),
-          Expanded(
-            flex: 40,
-            child: Row(
+      resizeToAvoidBottomInset: false,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 40,
+            ),
+            QrImage(
+              data: txtController.text,
+              size: 200,
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Flexible(
@@ -94,18 +93,18 @@ class _GeneratorState extends State<Generator> {
                 ),
               ],
             ),
-          ),
-          Expanded(
-            flex: 20,
-            child: Container(
+            const SizedBox(
+              height: 150,
+            ),
+            Container(
               alignment: Alignment.center,
               child: const Text(
                 "Developed by Md. Sifatullah",
                 style: TextStyle(fontSize: 16, color: Colors.black54),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
