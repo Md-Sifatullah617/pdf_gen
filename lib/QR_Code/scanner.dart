@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class ScannerPdf extends StatefulWidget {
   const ScannerPdf({super.key});
@@ -57,30 +58,40 @@ class _GeneratorState extends State<Generator> {
     return Scaffold(
       body: Column(
         children: [
-
+          Expanded(
+              child: Column(
+            children: [
+              QrImage(
+                data: txtController.text,
+                size: 200,
+              ),
+            ],
+          )),
           const SizedBox(
             height: 40,
           ),
-          Row(
-            children: [
-              Expanded(
-                child: TextField(
-                  controller: txtController,
-                  decoration:
-                      const InputDecoration(border: OutlineInputBorder()),
+          Expanded(
+            child: Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: txtController,
+                    decoration:
+                        const InputDecoration(border: OutlineInputBorder()),
+                  ),
                 ),
-              ),
-              const SizedBox(
-                width: 15,
-              ),
-              FloatingActionButton(
-                onPressed: () {
-                  setState(() {});
-                },
-                backgroundColor: Theme.of(context).primaryColor,
-                child: const Icon(Icons.done),
-              ),
-            ],
+                const SizedBox(
+                  width: 15,
+                ),
+                FloatingActionButton(
+                  onPressed: () {
+                    setState(() {});
+                  },
+                  backgroundColor: Theme.of(context).primaryColor,
+                  child: const Icon(Icons.done),
+                ),
+              ],
+            ),
           ),
           Expanded(
             child: Container(
@@ -153,9 +164,7 @@ class _ScannerFState extends State<ScannerF> {
             height: 20,
           ),
           ElevatedButton(
-              onPressed: () {
-
-              },
+              onPressed: () {},
               style: buttonStyle,
               child: const Text("Scan QR Code"))
         ],
