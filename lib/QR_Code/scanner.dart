@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
@@ -124,6 +125,14 @@ class _ScannerFState extends State<ScannerF> {
   QRViewController? qrCtrl;
   Barcode? barcode;
 
+  @override
+  void reassemble() async{
+    super.reassemble();
+    if(Platform.isAndroid){
+      await qrCtrl!.pauseCamera();
+    }
+    qrCtrl!.resumeCamera();
+  }
   @override
   void dispose() {
     super.dispose();
