@@ -126,13 +126,14 @@ class _ScannerFState extends State<ScannerF> {
   Barcode? barcode;
 
   @override
-  void reassemble() async{
+  void reassemble() async {
     super.reassemble();
-    if(Platform.isAndroid){
+    if (Platform.isAndroid) {
       await qrCtrl!.pauseCamera();
     }
     qrCtrl!.resumeCamera();
   }
+
   @override
   void dispose() {
     super.dispose();
@@ -144,10 +145,25 @@ class _ScannerFState extends State<ScannerF> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            const SizedBox(
-              height: 40,
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                IconButton(
+                    onPressed: () async {
+                      await qrCtrl?.toggleFlash();
+                      setState(() {});
+                    },
+                    icon: const Icon(Icons.flash_off)),
+                IconButton(
+                    onPressed: () async {
+                      await qrCtrl?.flipCamera();
+                      setState(() {});
+                    },
+                    icon: const Icon(Icons.switch_camera))
+              ],
             ),
             SizedBox(
               height: 200,
@@ -203,10 +219,9 @@ class _ScannerFState extends State<ScannerF> {
                       readOnly: true,
                       controller: txtController,
                       decoration: const InputDecoration(
-
-                        filled: true,
-                          border: OutlineInputBorder(
-                          ), labelText: 'Scan First!'),
+                          filled: true,
+                          border: OutlineInputBorder(),
+                          labelText: 'Scan First!'),
                     ),
                   ),
                 ),
