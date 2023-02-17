@@ -1,7 +1,5 @@
-import 'package:barcode_widget/barcode_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
 class ScannerPdf extends StatefulWidget {
@@ -60,14 +58,7 @@ class _GeneratorState extends State<Generator> {
     return Scaffold(
       body: Column(
         children: [
-          Expanded(
-            child: BarcodeWidget(
-                data: txtController.text,
-                color: Colors.red,
-                width: 200,
-                height: 200,
-                barcode: Barcode.qrCode()),
-          ),
+
           const SizedBox(
             height: 40,
           ),
@@ -165,7 +156,7 @@ class _ScannerFState extends State<ScannerF> {
           ),
           ElevatedButton(
               onPressed: () {
-                scanQRCode();
+
               },
               style: buttonStyle,
               child: const Text("Scan QR Code"))
