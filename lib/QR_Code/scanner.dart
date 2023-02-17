@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class ScannerPdf extends StatefulWidget {
@@ -119,57 +120,68 @@ class ScannerF extends StatefulWidget {
 
 class _ScannerFState extends State<ScannerF> {
   final txtController = TextEditingController();
-  String qrText = 'Default';
+  final qrKey = GlobalKey(debugLabel: 'QR');
+  QRViewController? qrCtrl;
+
+  @override
+  void dispose() {
+    super.dispose();
+    qrCtrl?.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     ButtonStyle buttonStyle =
         ElevatedButton.styleFrom(minimumSize: const Size(double.infinity, 50));
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Center(
-            child: Text(
-              "Scan Result",
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 25,
-                  color: Color.fromARGB(193, 0, 0, 0),
-                  letterSpacing: 2),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            SizedBox(
+              height: 200,
+              width: 200,
+              child: QRView(key: qrKey, onQRViewCreated: (qrCtrl){
+                setState(() {
+                  this.qrCtrl=qrCtrl;
+                });
+              }),
             ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: TextField(
-                  controller: txtController,
-                  decoration:
-                      const InputDecoration(border: OutlineInputBorder()),
+            const Center(
+              child: Text(
+                "Scan Result",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25,
+                    color: Color.fromARGB(193, 0, 0, 0),
+                    letterSpacing: 2),
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: txtController,
+                    decoration:
+                        const InputDecoration(border: OutlineInputBorder()),
+                  ),
                 ),
-              ),
-              const SizedBox(
-                width: 15,
-              ),
-              FloatingActionButton(
-                onPressed: () {
-                  Clipboard.setData(ClipboardData(text: txtController.text));
-                },
-                child: const Icon(Icons.copy),
-              )
-            ],
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          ElevatedButton(
-              onPressed: () {},
-              style: buttonStyle,
-              child: const Text("Scan QR Code"))
-        ],
+                const SizedBox(
+                  width: 15,
+                ),
+                FloatingActionButton(
+                  onPressed: () {
+                    Clipboard.setData(ClipboardData(text: txtController.text));
+                  },
+                  child: const Icon(Icons.copy),
+                )
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
