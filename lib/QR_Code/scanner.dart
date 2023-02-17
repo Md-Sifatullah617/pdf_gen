@@ -138,14 +138,30 @@ class _ScannerFState extends State<ScannerF> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
+            const SizedBox(
+              height: 40,
+            ),
             SizedBox(
               height: 200,
               width: 200,
-              child: QRView(key: qrKey, onQRViewCreated: (qrCtrl){
-                setState(() {
-                  this.qrCtrl=qrCtrl;
-                });
-              }),
+              child: QRView(
+                  key: qrKey,
+                  onQRViewCreated: (qrCtrl) {
+                    setState(() {
+                      this.qrCtrl = qrCtrl;
+                    });
+                  },
+                overlay: QrScannerOverlayShape(
+                  borderColor: Colors.green,
+                  borderRadius: 10,
+                  borderLength: 20,
+                  borderWidth: 10,
+                  cutOutSize: MediaQuery.of(context).size.width*1,
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 40,
             ),
             const Center(
               child: Text(
@@ -158,7 +174,7 @@ class _ScannerFState extends State<ScannerF> {
               ),
             ),
             const SizedBox(
-              height: 10,
+              height: 30,
             ),
             Row(
               children: [
