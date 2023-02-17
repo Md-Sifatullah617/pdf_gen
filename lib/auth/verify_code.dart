@@ -1,8 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pdf_gen/auth/signup.dart';
-
-import '../homepage.dart';
 import '../utilities/utilities.dart';
 
 class VerifyCode extends StatefulWidget {
@@ -56,6 +54,7 @@ class _VerifyCodeState extends State<VerifyCode> {
                   smsCode: vcode.text.toString());
               try {
                 await auth.signInWithCredential(credential);
+                // ignore: use_build_context_synchronously
                 Navigator.push(
                     context,
                     MaterialPageRoute(
