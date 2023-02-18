@@ -180,7 +180,11 @@ class _ScannerFState extends State<ScannerF> {
                           future: qrCtrl?.getCameraInfo(),
                           builder: (context, snapshot) {
                             if (snapshot.data != null) {
-                              return const Icon(Icons.switch_camera);
+                              if (snapshot.data?.name != 'back') {
+                                return const Icon(Icons.camera_front);
+                              } else {
+                                return const Icon(Icons.switch_camera);
+                              }
                             } else {
                               return Container();
                             }
