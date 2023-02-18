@@ -49,8 +49,6 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
-    ButtonStyle buttonStyle =
-        ElevatedButton.styleFrom(minimumSize: const Size(double.infinity, 50));
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
