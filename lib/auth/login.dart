@@ -54,15 +54,6 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    ButtonStyle buttonStyle =
-        ElevatedButton.styleFrom(minimumSize: const Size(double.infinity, 50));
-    ButtonStyle btnStyle = const ButtonStyle(
-      minimumSize:  MaterialStatePropertyAll(Size(double.infinity, 50)),
-      backgroundColor: MaterialStatePropertyAll(Colors.white),
-      foregroundColor: MaterialStatePropertyAll(Colors.black),
-      side: MaterialStatePropertyAll(BorderSide(color: Colors.green)),
-      overlayColor: MaterialStatePropertyAll(Colors.green)
-    );
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(

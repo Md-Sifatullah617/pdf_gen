@@ -15,4 +15,13 @@ class Utilities {
   }
 }
 
+ButtonStyle buttonStyle =
+        ElevatedButton.styleFrom(minimumSize: const Size(double.infinity, 50));
 
+ButtonStyle btnStyle = const ButtonStyle(
+      minimumSize:  MaterialStatePropertyAll(Size(double.infinity, 50)),
+      backgroundColor: MaterialStatePropertyAll(Colors.white),
+      foregroundColor: MaterialStatePropertyAll(Colors.black),
+      side: MaterialStatePropertyAll(BorderSide(color: Colors.green)),
+      overlayColor: MaterialStatePropertyAll(Colors.green)
+    );
