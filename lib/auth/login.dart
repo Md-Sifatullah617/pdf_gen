@@ -56,6 +56,13 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     ButtonStyle buttonStyle =
         ElevatedButton.styleFrom(minimumSize: const Size(double.infinity, 50));
+    ButtonStyle btnStyle = ElevatedButton.styleFrom(
+      minimumSize: const Size(double.infinity, 50),
+      backgroundColor: Colors.white,
+      foregroundColor: Colors.black,
+      side: const BorderSide(color: Colors.green),
+    ).merge(
+        const ButtonStyle(overlayColor: MaterialStatePropertyAll(Colors.green)));
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
@@ -154,14 +161,7 @@ class _LoginPageState extends State<LoginPage> {
                         MaterialPageRoute(
                             builder: (context) => const VerificatorCode()));
                   },
-                  style: const ButtonStyle(
-                      minimumSize:
-                          MaterialStatePropertyAll(Size(double.infinity, 50)),
-                      backgroundColor: MaterialStatePropertyAll(Colors.white),
-                      foregroundColor: MaterialStatePropertyAll(Colors.black),
-                      side: MaterialStatePropertyAll(
-                          BorderSide(color: Colors.green)),
-                      overlayColor: MaterialStatePropertyAll(Colors.green)),
+                  style: btnStyle,
                   child: const Text("Login with Phone Number"),
                 ),
                 const SizedBox(
@@ -169,14 +169,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 ElevatedButton.icon(
                   onPressed: () {},
-                  style: const ButtonStyle(
-                      minimumSize:
-                          MaterialStatePropertyAll(Size(double.infinity, 50)),
-                      backgroundColor: MaterialStatePropertyAll(Colors.white),
-                      foregroundColor: MaterialStatePropertyAll(Colors.black),
-                      side: MaterialStatePropertyAll(
-                          BorderSide(color: Colors.green)),
-                      overlayColor: MaterialStatePropertyAll(Colors.green)),
+                  style: btnStyle,
                   icon: const FaIcon(FontAwesomeIcons.google),
                   label: const Text("Sign In with Google"),
                 ),
