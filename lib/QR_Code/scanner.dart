@@ -146,25 +146,29 @@ class _ScannerFState extends State<ScannerF> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                IconButton(
-                    onPressed: () async {
-                      await qrCtrl?.toggleFlash();
-                      setState(() {});
-                    },
-                    icon: const Icon(Icons.flash_off)),
-                IconButton(
-                    onPressed: () async {
-                      await qrCtrl?.flipCamera();
-                      setState(() {});
-                    },
-                    icon: const Icon(Icons.switch_camera))
-              ],
+            Container(
+                color: Colors.grey.withOpacity(0.2),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  IconButton(
+                      onPressed: () async {
+                        await qrCtrl?.toggleFlash();
+                        setState(() {});
+                      },
+                      icon: const Icon(Icons.flash_off)),
+                  IconButton(
+                      onPressed: () async {
+                        await qrCtrl?.flipCamera();
+                        setState(() {});
+                      },
+                      icon: const Icon(Icons.switch_camera))
+                ],
+              ),
             ),
+            const SizedBox(height: 10,),
             SizedBox(
               height: 200,
               width: 200,
@@ -213,7 +217,6 @@ class _ScannerFState extends State<ScannerF> {
                     height: 200,
                     width: double.infinity,
                     child: TextField(
-                      textAlignVertical: TextAlignVertical.top,
                       expands: true,
                       maxLines: null,
                       readOnly: true,
