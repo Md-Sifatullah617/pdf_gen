@@ -176,7 +176,15 @@ class _ScannerFState extends State<ScannerF> {
                         await qrCtrl?.flipCamera();
                         setState(() {});
                       },
-                      icon: const Icon(Icons.switch_camera))
+                      icon: FutureBuilder(
+                          future: qrCtrl?.getCameraInfo(),
+                          builder: (context, snapshot) {
+                            if (snapshot.data != null) {
+                              return const Icon(Icons.switch_camera);
+                            } else {
+                              return Container();
+                            }
+                          }))
                 ],
               ),
             ),
