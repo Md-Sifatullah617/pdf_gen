@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pdf_gen/auth/signup.dart';
 import 'package:pdf_gen/auth/verification_page.dart';
 import 'package:pdf_gen/homepage.dart';
-
 import '../utilities/utilities.dart';
 
 class LoginPage extends StatefulWidget {
@@ -57,7 +57,7 @@ class _LoginPageState extends State<LoginPage> {
     ButtonStyle buttonStyle =
         ElevatedButton.styleFrom(minimumSize: const Size(double.infinity, 50));
     return WillPopScope(
-      onWillPop: ()async => false,
+      onWillPop: () async => false,
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -132,7 +132,9 @@ class _LoginPageState extends State<LoginPage> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const SignUpPage(phoneNumber: "",)));
+                                builder: (context) => const SignUpPage(
+                                      phoneNumber: "",
+                                    )));
                       },
                       child: const Text(
                         "Signup",
@@ -150,7 +152,7 @@ class _LoginPageState extends State<LoginPage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) =>const VerificatorCode()));
+                            builder: (context) => const VerificatorCode()));
                   },
                   style: const ButtonStyle(
                       minimumSize:
@@ -161,6 +163,22 @@ class _LoginPageState extends State<LoginPage> {
                           BorderSide(color: Colors.green)),
                       overlayColor: MaterialStatePropertyAll(Colors.green)),
                   child: const Text("Login with Phone Number"),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                ElevatedButton.icon(
+                  onPressed: () {},
+                  style: const ButtonStyle(
+                      minimumSize:
+                          MaterialStatePropertyAll(Size(double.infinity, 50)),
+                      backgroundColor: MaterialStatePropertyAll(Colors.white),
+                      foregroundColor: MaterialStatePropertyAll(Colors.black),
+                      side: MaterialStatePropertyAll(
+                          BorderSide(color: Colors.green)),
+                      overlayColor: MaterialStatePropertyAll(Colors.green)),
+                  icon: const FaIcon(FontAwesomeIcons.google),
+                  label: const Text("Sign In with Google"),
                 ),
               ]),
             ),
