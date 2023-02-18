@@ -147,10 +147,9 @@ class _ScannerFState extends State<ScannerF> {
         child: Column(
           children: [
             Container(
-                decoration: BoxDecoration(
-                    color: Colors.grey.withOpacity(0.2),
-                    borderRadius: BorderRadius.circular(20)
-                ),
+              decoration: BoxDecoration(
+                  color: Colors.grey.withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(20)),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -161,7 +160,17 @@ class _ScannerFState extends State<ScannerF> {
                         await qrCtrl?.toggleFlash();
                         setState(() {});
                       },
-                      icon: const Icon(Icons.flash_off)),
+                      icon: FutureBuilder<bool?>(
+                          future: qrCtrl?.getFlashStatus(),
+                          builder: (context, snapshot) {
+                            if (snapshot.data != null) {
+                              return Icon(snapshot.data!
+                                  ? Icons.flash_on
+                                  : Icons.flash_off);
+                            } else {
+                              return Container();
+                            }
+                          })),
                   IconButton(
                       onPressed: () async {
                         await qrCtrl?.flipCamera();
@@ -171,7 +180,9 @@ class _ScannerFState extends State<ScannerF> {
                 ],
               ),
             ),
-            const SizedBox(height: 10,),
+            const SizedBox(
+              height: 10,
+            ),
             SizedBox(
               height: 200,
               width: 200,
