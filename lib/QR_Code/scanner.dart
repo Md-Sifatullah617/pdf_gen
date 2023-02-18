@@ -147,7 +147,10 @@ class _ScannerFState extends State<ScannerF> {
         child: Column(
           children: [
             Container(
-                color: Colors.grey.withOpacity(0.2),
+                decoration: BoxDecoration(
+                    color: Colors.grey.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(20)
+                ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
