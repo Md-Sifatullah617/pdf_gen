@@ -1,9 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:pdf_gen/auth/google_sign_in.dart';
 import 'package:pdf_gen/auth/signup.dart';
 import 'package:pdf_gen/auth/verification_page.dart';
 import 'package:pdf_gen/homepage.dart';
+import 'package:provider/provider.dart';
 import '../utilities/utilities.dart';
 
 class LoginPage extends StatefulWidget {
@@ -159,7 +161,11 @@ class _LoginPageState extends State<LoginPage> {
                   height: 20,
                 ),
                 ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                    final provider = Provider.of<GoogleSignInProvider>(context,
+                        listen: false);
+                    provider.googleLogin();
+                  },
                   style: btnStyle,
                   icon: const FaIcon(FontAwesomeIcons.google),
                   label: const Text("Sign In with Google"),
