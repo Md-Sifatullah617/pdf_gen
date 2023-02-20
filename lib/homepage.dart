@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pdf_gen/QR_Code/scanner.dart';
 import 'package:pdf_gen/auth/login.dart';
+import 'package:pdf_gen/auth/profile_page.dart';
 import 'package:pdf_gen/utilities/utilities.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -37,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // }
 
     return WillPopScope(
-        onWillPop: () async => false,
+      onWillPop: () async => false,
       child: Scaffold(
         appBar: AppBar(
           actions: [
@@ -82,6 +83,24 @@ class _MyHomePageState extends State<MyHomePage> {
         body: Padding(
           padding: const EdgeInsets.all(25.0),
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            StreamBuilder(
+              stream: FirebaseAuth.instance.authStateChanges(),
+              builder: ((context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (snapshot.hasData) {
+                  return const ProfilePage();
+                } else if (snapshot.hasError) {
+                  return const Center(
+                    child: Text("Something Went Wrong!"),
+                  );
+                } else {
+                  return const LoginPage();
+                }
+              }),
+            ),
             InkWell(
                 onTap: () {
                   Navigator.push(
