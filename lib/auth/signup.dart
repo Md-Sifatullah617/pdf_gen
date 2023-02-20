@@ -113,7 +113,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 height: 20,
               ),
               TextFormField(
-                controller: phnController,
+                // controller: phnController,
                 initialValue: widget.phoneNumber,
                 keyboardType: TextInputType.phone,
                 decoration: const InputDecoration(

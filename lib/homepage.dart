@@ -82,25 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: Padding(
           padding: const EdgeInsets.all(25.0),
-          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            StreamBuilder(
-              stream: FirebaseAuth.instance.authStateChanges(),
-              builder: ((context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                } else if (snapshot.hasData) {
-                  return const ProfilePage();
-                } else if (snapshot.hasError) {
-                  return const Center(
-                    child: Text("Something Went Wrong!"),
-                  );
-                } else {
-                  return const LoginPage();
-                }
-              }),
-            ),
+          child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
             InkWell(
                 onTap: () {
                   Navigator.push(
@@ -109,7 +91,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           builder: (context) => const ScannerPdf()));
                 },
                 child: const Image(
-                    image: AssetImage("assets/images/qr_Scanner.gif"))),
+                  image: AssetImage("assets/images/qr_Scanner.gif"),
+                  fit: BoxFit.fill,
+                )),
           ]),
         ),
       ),

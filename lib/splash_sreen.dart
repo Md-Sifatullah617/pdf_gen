@@ -37,9 +37,7 @@ class _SplashScreennState extends State<SplashScreenn> {
     return Container(
       height: 200,
       width: 200,
-      decoration: const BoxDecoration(
-        color: Colors.white,
-      ),
+      color: const Color.fromARGB(255, 241, 241, 241),
       child: const Image(image: AssetImage("assets/images/logo.gif")),
     );
   }
