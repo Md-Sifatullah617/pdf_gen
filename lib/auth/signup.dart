@@ -37,7 +37,7 @@ class _SignUpPageState extends State<SignUpPage> {
       Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const MyHomePage(),
+            builder: (context) => MyHomePage(name: '${fnameController.text}+${lnameController.text}', ptUrl: '',),
           ));
     }).onError((error, stackTrace) {
       Utilities().toastMessage(error.toString(), color: Colors.red);
