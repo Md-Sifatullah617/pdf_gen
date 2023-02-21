@@ -11,7 +11,7 @@ class ProfilePage extends StatelessWidget {
         title: const Text("Profile"),
         centerTitle: true,
       ),
-      body: Column(children: [
+      body: Column(children: const [
         Text("Profile")
       ]),
     );
