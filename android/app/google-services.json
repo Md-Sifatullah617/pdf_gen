@@ -14,7 +14,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "1528941071-916e9gn7j6ttght7ltu7fofn07q7d1b6.apps.googleusercontent.com",
+          "client_id": "1528941071-58k9u789adgppqu1js851e24oc0o7p5s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pdf_gen",
+            "certificate_hash": "7d22b8e82d4f7aeb87771c63f963f30492cceec0"
+          }
+        },
+        {
+          "client_id": "1528941071-2af1frd6vk8o7a0p7f6mr47h1fpa14ns.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -27,7 +35,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1528941071-916e9gn7j6ttght7ltu7fofn07q7d1b6.apps.googleusercontent.com",
+              "client_id": "1528941071-2af1frd6vk8o7a0p7f6mr47h1fpa14ns.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
