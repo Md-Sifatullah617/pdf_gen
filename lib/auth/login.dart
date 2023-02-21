@@ -38,7 +38,7 @@ class _LoginPageState extends State<LoginPage> {
             password: pwdController.text.toString())
         .then((value) {
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const MyHomePage()));
+          context, MaterialPageRoute(builder: (context) => const MyHomePage(name: '', ptUrl: '',)));
       Utilities().toastMessage(
         "Login Successfull",
         color: Colors.green,
@@ -168,7 +168,7 @@ class _LoginPageState extends State<LoginPage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const MyHomePage()));
+                              builder: (context) =>  MyHomePage(name: userName, ptUrl: profilePicture,)));
                     }).onError((error, stackTrace) {
                       Utilities()
                           .toastMessage(error.toString(), color: Colors.red);

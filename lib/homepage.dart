@@ -5,7 +5,9 @@ import 'package:pdf_gen/auth/login.dart';
 import 'package:pdf_gen/utilities/utilities.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+  final String name;
+  final String ptUrl;
+  const MyHomePage({super.key, required this.name, required this.ptUrl});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
