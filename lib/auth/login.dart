@@ -1,11 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:pdf_gen/auth/google_sign_in.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:pdf_gen/auth/signup.dart';
 import 'package:pdf_gen/auth/verification_page.dart';
 import 'package:pdf_gen/homepage.dart';
-import 'package:provider/provider.dart';
 import '../utilities/utilities.dart';
 
 class LoginPage extends StatefulWidget {
@@ -18,6 +17,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final emailController = TextEditingController();
   final pwdController = TextEditingController();
+  final _googleSignIn = GoogleSignIn();
   @override
   void dispose() {
     super.dispose();
@@ -162,7 +162,17 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 ElevatedButton.icon(
                   onPressed: () {
-                    
+                    _googleSignIn.signIn().then((value) {
+                      String userName = value!.displayName!;
+                      String profilePicture = value.photoUrl!;
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const MyHomePage()));
+                    }).onError((error, stackTrace) {
+                      Utilities()
+                          .toastMessage(error.toString(), color: Colors.red);
+                    });
                   },
                   style: btnStyle,
                   icon: const FaIcon(FontAwesomeIcons.google),
