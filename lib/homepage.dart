@@ -63,18 +63,18 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         drawer: Drawer(
           child: ListView(
-            children: const [
+            children: [
               UserAccountsDrawerHeader(
-                accountName: Text("Md. Sifatullah"),
-                accountEmail: Text("sifatullahsanowar1@gmail.com"),
+                accountName: Text(widget.name),
+                accountEmail: const Text("sifatullahsanowar1@gmail.com"),
                 currentAccountPicture: CircleAvatar(
-                    backgroundImage: AssetImage("assets/images/dp.jpg")),
+                    backgroundImage: NetworkImage(widget.ptUrl)),
               ),
-              ListTile(
+              const ListTile(
                 leading: Icon(Icons.wallet),
                 title: Text("Donate us"),
               ),
-              ListTile(
+              const ListTile(
                 leading: Icon(Icons.info),
                 title: Text("About us"),
               ),
