@@ -5,9 +5,7 @@ import 'package:pdf_gen/auth/login.dart';
 import 'package:pdf_gen/utilities/utilities.dart';
 
 class MyHomePage extends StatefulWidget {
-  final String name;
-  final String ptUrl;
-  const MyHomePage({super.key, required this.name, required this.ptUrl});
+  const MyHomePage({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -65,10 +63,10 @@ class _MyHomePageState extends State<MyHomePage> {
           child: ListView(
             children: [
               UserAccountsDrawerHeader(
-                accountName: Text(widget.name),
-                accountEmail: const Text("sifatullahsanowar1@gmail.com"),
+                accountName: Text(FirebaseAuth.instance.currentUser!.displayName!),
+                accountEmail: Text(FirebaseAuth.instance.currentUser!.email!),
                 currentAccountPicture: CircleAvatar(
-                    backgroundImage: NetworkImage(widget.ptUrl)),
+                    backgroundImage: NetworkImage(FirebaseAuth.instance.currentUser!.photoURL!)),
               ),
               const ListTile(
                 leading: Icon(Icons.wallet),

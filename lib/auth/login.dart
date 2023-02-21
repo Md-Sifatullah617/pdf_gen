@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+import 'package:pdf_gen/auth/google_sign_in.dart';
 import 'package:pdf_gen/auth/signup.dart';
 import 'package:pdf_gen/auth/verification_page.dart';
 import 'package:pdf_gen/homepage.dart';
@@ -17,7 +17,6 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final emailController = TextEditingController();
   final pwdController = TextEditingController();
-  final _googleSignIn = GoogleSignIn();
   @override
   void dispose() {
     super.dispose();
@@ -38,7 +37,10 @@ class _LoginPageState extends State<LoginPage> {
             password: pwdController.text.toString())
         .then((value) {
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const MyHomePage(name: '', ptUrl: '',)));
+          context,
+          MaterialPageRoute(
+              builder: (context) => const MyHomePage(
+                  )));
       Utilities().toastMessage(
         "Login Successfull",
         color: Colors.green,
@@ -162,17 +164,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 ElevatedButton.icon(
                   onPressed: () {
-                    _googleSignIn.signIn().then((value) {
-                      String userName = value!.displayName!;
-                      String profilePicture = value.photoUrl!;
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>  MyHomePage(name: userName, ptUrl: profilePicture,)));
-                    }).onError((error, stackTrace) {
-                      Utilities()
-                          .toastMessage(error.toString(), color: Colors.red);
-                    });
+                    GoogleSignInProvider().signInWithGoogle();
                   },
                   style: btnStyle,
                   icon: const FaIcon(FontAwesomeIcons.google),

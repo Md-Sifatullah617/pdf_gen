@@ -21,7 +21,7 @@ class _SplashScreennState extends State<SplashScreenn> {
     if(user!=null){
         Timer(const Duration(seconds: 5), () {
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const MyHomePage(name: '', ptUrl: '',)));
+          context, MaterialPageRoute(builder: (context) => const MyHomePage()));
     });
     }else{
         Timer(const Duration(seconds: 5), () {
