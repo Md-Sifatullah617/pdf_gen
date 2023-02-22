@@ -164,7 +164,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 ElevatedButton.icon(
                   onPressed: () {
-                    GoogleSignInProvider().signInWithGoogle();
+                    GoogleSignInProvider().signInWithGoogle(context);
                   },
                   style: btnStyle,
                   icon: const FaIcon(FontAwesomeIcons.google),
