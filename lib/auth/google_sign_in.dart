@@ -35,5 +35,5 @@ class GoogleSignInProvider extends ChangeNotifier {
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
   //signout
-  //no need for now
+  
 }
