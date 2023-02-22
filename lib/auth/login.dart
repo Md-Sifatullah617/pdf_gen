@@ -160,15 +160,16 @@ class _LoginPageState extends State<LoginPage> {
                   height: 20,
                 ),
                 ElevatedButton.icon(
-                  onPressed: () {
-                    GoogleSignInProvider().signInWithGoogle();
+                  onPressed: () async {
+                    await GoogleSignInProvider().signInWithGoogle();
+                    // ignore: use_build_context_synchronously
                     Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => const MyHomePage()));
                   },
                   style: btnStyle,
-                  icon: const FaIcon(FontAwesomeIcons.google),
+                  icon: const FaIcon(FontAwesomeIcons.google, color: Colors.red,),
                   label: const Text("Sign In with Google"),
                 ),
               ]),
