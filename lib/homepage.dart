@@ -12,7 +12,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     //This code is for exit pop up but not complete one
@@ -63,10 +63,10 @@ class _MyHomePageState extends State<MyHomePage> {
           child: ListView(
             children: [
               UserAccountsDrawerHeader(
-                accountName: Text(FirebaseAuth.instance.currentUser!.displayName!),
-                accountEmail: Text(FirebaseAuth.instance.currentUser!.email!),
-                currentAccountPicture: CircleAvatar(
-                    backgroundImage: NetworkImage(FirebaseAuth.instance.currentUser!.photoURL!)),
+                accountName: Text(_auth.currentUser!.displayName!),
+                accountEmail: Text(_auth.currentUser!.email!),
+                currentAccountPicture:
+                    CircleAvatar(backgroundImage: NetworkImage(_auth.currentUser!.photoURL!)),
               ),
               const ListTile(
                 leading: Icon(Icons.wallet),
