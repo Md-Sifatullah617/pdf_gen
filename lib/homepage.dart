@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:pdf_gen/QR_Code/scanner.dart';
 import 'package:pdf_gen/auth/login.dart';
-import 'package:pdf_gen/utilities/utilities.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
