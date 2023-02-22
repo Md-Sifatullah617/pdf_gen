@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:pdf_gen/QR_Code/scanner.dart';
 import 'package:pdf_gen/auth/login.dart';
 import 'package:pdf_gen/utilities/utilities.dart';
@@ -44,14 +45,10 @@ class _MyHomePageState extends State<MyHomePage> {
             IconButton(
               icon: const Icon(Icons.exit_to_app),
               onPressed: () {
-                _auth
-                    .signOut()
-                    .then((value) => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const LoginPage())))
-                    .onError((error, stackTrace) => Utilities()
-                        .toastMessage(error.toString(), color: Colors.red));
+                _auth.signOut();
+                GoogleSignIn().signOut();
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const LoginPage()));
               },
             )
           ],
@@ -65,8 +62,9 @@ class _MyHomePageState extends State<MyHomePage> {
               UserAccountsDrawerHeader(
                 accountName: Text(_auth.currentUser!.displayName!),
                 accountEmail: Text(_auth.currentUser!.email!),
-                currentAccountPicture:
-                    CircleAvatar(backgroundImage: NetworkImage(_auth.currentUser!.photoURL!)),
+                currentAccountPicture: CircleAvatar(
+                    backgroundImage:
+                        NetworkImage(_auth.currentUser!.photoURL!)),
               ),
               const ListTile(
                 leading: Icon(Icons.wallet),
