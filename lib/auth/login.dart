@@ -37,10 +37,7 @@ class _LoginPageState extends State<LoginPage> {
             password: pwdController.text.toString())
         .then((value) {
       Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => const MyHomePage(
-                  )));
+          context, MaterialPageRoute(builder: (context) => const MyHomePage()));
       Utilities().toastMessage(
         "Login Successfull",
         color: Colors.green,
@@ -164,7 +161,11 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 ElevatedButton.icon(
                   onPressed: () {
-                    GoogleSignInProvider().signInWithGoogle(context);
+                    GoogleSignInProvider().signInWithGoogle();
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const MyHomePage()));
                   },
                   style: btnStyle,
                   icon: const FaIcon(FontAwesomeIcons.google),

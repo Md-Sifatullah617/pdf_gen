@@ -7,7 +7,7 @@ class GoogleSignInProvider {
   final _googleSignIn = GoogleSignIn();
 
   //signInWithGoogle
-  Future signInWithGoogle(context) async {
+  Future signInWithGoogle() async {
     try {
       //trigger the authentication flow
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
