@@ -4,18 +4,6 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 
 class GoogleSignInProvider extends ChangeNotifier {
-  //handleAuthState
-//   handleAuthState() {
-//     return StreamBuilder(
-//         stream: FirebaseAuth.instance.authStateChanges(),
-//         builder: (context, snapshot) {
-//           if (snapshot.hasData) {
-//             return const MyHomePage();
-//           } else {
-//             return const LoginPage();
-//           }
-//         });
-//   }
 
   //signInWithGoogle
   signInWithGoogle() async {
